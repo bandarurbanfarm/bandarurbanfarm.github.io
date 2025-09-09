@@ -3,7 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bandar Urban Farm</title>
+    <meta name="description" content="Bandar Urban Farm - Transforming urban spaces into thriving gardens. Learn about vertical gardening, container gardening, composting, and more.">
+    <meta name="keywords" content="urban farming, gardening, sustainable living, vertical gardening, container gardening, composting, balcony garden, indoor herbs">
+    <meta name="author" content="Bandar Urban Farm">
+    <meta property="og:title" content="Bandar Urban Farm - Urban Gardening Solutions">
+    <meta property="og:description" content="Transforming urban spaces into thriving gardens. Practical guides for city dwellers who want to grow their own food.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bandarurbanfarm.github.io/">
+    <meta property="og:image" content="https://placehold.co/1200x630/22c55e/ffffff?text=Bandar+Urban+Farm">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bandar Urban Farm - Urban Gardening Solutions">
+    <meta name="twitter:description" content="Transforming urban spaces into thriving gardens. Practical guides for city dwellers who want to grow their own food.">
+    <meta name="twitter:image" content="https://placehold.co/1200x630/22c55e/ffffff?text=Bandar+Urban+Farm">
+    <title>Bandar Urban Farm - Transforming Urban Spaces into Thriving Gardens</title>
     <style>
         :root {
             --primary-color: #22c55e;
@@ -745,6 +757,15 @@
             return `${baseUrl}#${post.slug}`;
         }
 
+        // Update document title for SEO
+        function updateDocumentTitle(title) {
+            if (title) {
+                document.title = `${title} - Bandar Urban Farm`;
+            } else {
+                document.title = "Bandar Urban Farm - Transforming Urban Spaces into Thriving Gardens";
+            }
+        }
+
         // Parse CSV data
         function parseCSV(csvText) {
             const lines = csvText.split('\n');
@@ -780,7 +801,7 @@
                         post[header] = fields[index] || '';
                     });
                     
-                    // Process tags - assuming they're comma-separated in the tags field
+                    // Process tags - assuming they're pipe-separated in the tags field
                     if (post.tags && typeof post.tags === 'string') {
                         post.tags = post.tags.split('|').map(tag => tag.trim()).filter(tag => tag);
                     } else if (!post.tags) {
@@ -800,14 +821,35 @@
         // Fetch blog posts from CSV
         async function fetchBlogPosts() {
             try {
-                // In a real implementation, this would fetch from the actual URL
-                // For demonstration purposes, we'll simulate the fetch and provide mock data
-                // since we can't guarantee the external URL exists or is accessible
+                // Attempt to fetch from the actual CSV URL
+                const response = await fetch('https://bandarurbanfarm.github.io/blogposts.csv');
                 
-                // Simulate network delay
-                await new Promise(resolve => setTimeout(resolve, 1500));
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 
-                // Mock CSV data - in a real implementation, this would be the response from fetch
+                const csvText = await response.text();
+                blogPosts = parseCSV(csvText);
+                filteredPosts = [...blogPosts];
+                
+                // Hide loading, show posts
+                loadingElement.classList.add('hidden');
+                if (blogPosts.length > 0) {
+                    postsGridElement.classList.remove('hidden');
+                    renderPosts();
+                } else {
+                    emptyStateElement.classList.remove('hidden');
+                }
+                
+                // Check URL hash for direct post link
+                checkUrlHash();
+                
+            } catch (error) {
+                console.error('Error fetching or parsing CSV:', error);
+                
+                // Fallback to mock data if fetch fails
+                console.log('Using mock data as fallback');
+                
                 const mockCSVData = `id,slug,title,author,date,content,excerpt,image,tags
 1,vertical-gardening-in-small-spaces,"Vertical Gardening: Maximizing Small Urban Spaces",Sarah Green,2024-01-15,"Vertical gardening is revolutionizing how we think about urban farming. When space is limited, growing upwards rather than outwards becomes essential. This comprehensive guide explores various vertical gardening techniques, from simple trellises to sophisticated hydroponic wall systems. We'll cover which plants work best for vertical growth, how to ensure proper irrigation, and creative DIY solutions for renters and homeowners alike. With the right approach, even the smallest balcony or patio can become a lush, productive garden that provides fresh produce and enhances your living space.","Learn how to transform your limited urban space into a productive vertical garden with these practical techniques.",https://placehold.co/800x400/22c55e/ffffff?text=Vertical+Gardening,"vertical gardening|small spaces|urban farming|DIY"
 2,container-gardening-for-beginners,"Container Gardening 101: Perfect for Urban Dwellers",Mike Thompson,2024-01-12,"Container gardening is the perfect entry point for urban residents looking to grow their own food. This beginner's guide covers everything you need to know, from selecting the right containers and soil mixtures to choosing plants that thrive in pots. We'll discuss drainage requirements, sunlight considerations, and how to prevent common problems like root rot and nutrient deficiencies. Whether you have a sunny windowsill, a balcony, or a small patio, you'll discover how to create a thriving container garden that provides fresh herbs, vegetables, and flowers throughout the growing season.","Start your urban farming journey with this comprehensive guide to container gardening for beginners.",https://placehold.co/800x400/10b981/ffffff?text=Container+Gardening,"container gardening|beginners|urban farming|herbs"
@@ -818,7 +860,6 @@
 7,rainwater-harvesting-urban-farms,"Rainwater Harvesting for Urban Farms: Conservation and Savings",Tom Lee,2023-12-28,"Rainwater harvesting is an essential practice for sustainable urban farming. This comprehensive guide covers various rainwater collection systems suitable for urban environments, from simple barrel setups to more sophisticated filtration and storage solutions. We'll discuss local regulations, calculating your water needs, proper maintenance to prevent mosquito breeding, and creative ways to integrate rainwater harvesting into your existing urban farm setup. Learn how to reduce your water bills, conserve this precious resource, and create a more resilient gardening system that can withstand drought conditions.","Implement rainwater harvesting in your urban farm to conserve water and reduce utility costs.",https://placehold.co/800x400/22c55e/ffffff?text=Rainwater+Harvesting,"rainwater harvesting|water conservation|sustainability|urban farming"
 8,pollinator-friendly-urban-gardens,"Creating Pollinator-Friendly Urban Gardens",Anna Martinez,2023-12-25,"Pollinators are essential for productive urban gardens, yet many cities have become 'food deserts' for bees, butterflies, and other beneficial insects. This guide shows you how to transform your urban garden into a pollinator paradise. We'll cover selecting native plants that attract and nourish pollinators, creating habitat features like bee hotels and butterfly puddling stations, avoiding harmful pesticides, and designing your garden layout to maximize pollinator visits. By making your urban farm pollinator-friendly, you'll not only increase your yields but also contribute to the vital conservation of these essential creatures.","Transform your urban garden into a haven for bees, butterflies, and other essential pollinators.",https://placehold.co/800x400/ec4899/ffffff?text=Pollinator+Garden,"pollinators|bees|butterflies|native plants"`;
                 
-                // Parse the CSV data
                 blogPosts = parseCSV(mockCSVData);
                 filteredPosts = [...blogPosts];
                 
@@ -829,10 +870,6 @@
                 
                 // Check URL hash for direct post link
                 checkUrlHash();
-                
-            } catch (error) {
-                console.error('Error fetching or parsing CSV:', error);
-                showErrorState();
             }
         }
 
@@ -878,6 +915,9 @@
         function showPostDetail(post) {
             currentPost = post;
             
+            // Update document title for SEO
+            updateDocumentTitle(post.title);
+            
             // Hide grid and show detail
             postsGridElement.classList.add('hidden');
             paginationElement.classList.add('hidden');
@@ -916,6 +956,9 @@
 
         // Show posts grid
         function showPostsGrid() {
+            // Update document title for SEO
+            updateDocumentTitle(null);
+            
             postDetailElement.classList.add('hidden');
             postsGridElement.classList.remove('hidden');
             if (filteredPosts.length > postsPerPage) {
@@ -1083,4 +1126,3 @@
     </script>
 </body>
 </html>
-```

@@ -6,7 +6,7 @@
     <title>Bandar Urban Farm</title>
     <style>
         :root {
-            --primary-color: #3b82f6;
+            --primary-color: #22c55e;
             --secondary-color: #10b981;
             --text-color: #1f2937;
             --light-text: #6b7280;
@@ -67,7 +67,7 @@
         .logo h1 {
             font-size: 2rem;
             font-weight: 700;
-            color: var(--text-color);
+            color: var(--primary-color);
         }
 
         .logo p {
@@ -93,7 +93,7 @@
         .search-input:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
         }
 
         .search-icon {
@@ -285,7 +285,7 @@
         }
 
         .clear-btn:hover {
-            background-color: #2563eb;
+            background-color: #16a34a;
         }
 
         /* Post Detail View */
@@ -306,7 +306,7 @@
         }
 
         .back-btn:hover {
-            color: #2563eb;
+            color: #16a34a;
         }
 
         .post-detail-title {
@@ -322,8 +322,34 @@
             align-items: center;
             font-size: 0.9rem;
             color: var(--light-text);
-            margin-bottom: 32px;
+            margin-bottom: 16px;
             gap: 16px;
+        }
+
+        .permalink {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            margin-bottom: 24px;
+            padding: 12px;
+            background-color: #f0fdf4;
+            border-radius: 6px;
+            border: 1px solid #bbf7d0;
+        }
+
+        .permalink-icon {
+            margin-right: 8px;
+        }
+
+        .copy-permalink {
+            margin-left: 8px;
+            cursor: pointer;
+            color: var(--secondary-color);
+        }
+
+        .copy-permalink:hover {
+            text-decoration: underline;
         }
 
         .post-detail-image {
@@ -413,7 +439,7 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 8px;
-            color: var(--text-color);
+            color: var(--primary-color);
         }
 
         .footer-description {
@@ -461,7 +487,7 @@
         .spinner {
             width: 48px;
             height: 48px;
-            border: 4px solid rgba(59, 130, 246, 0.1);
+            border: 4px solid rgba(34, 197, 94, 0.1);
             border-top: 4px solid var(--primary-color);
             border-radius: 50%;
             animation: spin 1s linear infinite;
@@ -475,6 +501,26 @@
 
         .loading-text {
             color: var(--light-text);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #16a34a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .toast.show {
+            opacity: 1;
         }
 
         /* Responsive Design */
@@ -520,7 +566,7 @@
             <div class="header-top">
                 <div class="logo">
                     <h1>Bandar Urban Farm</h1>
-                    <p>Thoughts, ideas, and stories from around the world</p>
+                    <p>Transforming urban spaces into thriving gardens</p>
                 </div>
                 <div class="search-container">
                     <span class="search-icon">🔍</span>
@@ -557,9 +603,14 @@
 
     <!-- Post Detail View -->
     <div id="postDetail" class="post-detail hidden">
-        <button id="backBtn" class="back-btn">← Back to Blog</button>
+        <button id="backBtn" class="back-btn">← Back to Bandar Urban Farm</button>
         <h1 id="detailTitle" class="post-detail-title"></h1>
         <div id="detailMeta" class="post-detail-meta"></div>
+        <div id="permalink" class="permalink">
+            <span class="permalink-icon">🔗</span>
+            <span id="permalinkUrl"></span>
+            <span id="copyPermalink" class="copy-permalink">Copy link</span>
+        </div>
         <img id="detailImage" class="post-detail-image" src="" alt="">
         <div id="detailContent" class="post-detail-content"></div>
         
@@ -578,12 +629,15 @@
         </div>
     </div>
 
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Link copied to clipboard!</div>
+
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <h3 class="footer-logo">Bandar Urban Farm</h3>
-                <p class="footer-description">Sharing knowledge and inspiration since 2024</p>
+                <p class="footer-description">Growing communities, one urban garden at a time</p>
                 <div class="social-links">
                     <a href="#" class="social-link">📘</a>
                     <a href="#" class="social-link">🐦</a>
@@ -591,93 +645,101 @@
                 </div>
             </div>
             <div class="copyright">
-                &copy; 2024 My BlogSpot. All rights reserved.
+                &copy; 2024 Bandar Urban Farm. All rights reserved.
             </div>
         </div>
     </footer>
 
     <script>
-        // Mock blog data
+        // Mock blog data with permalinks
         const blogPosts = [
             {
                 id: 1,
-                title: "The Future of Web Development in 2024",
-                author: "John Doe",
+                slug: "vertical-gardening-in-small-spaces",
+                title: "Vertical Gardening: Maximizing Small Urban Spaces",
+                author: "Sarah Green",
                 date: "2024-01-15",
-                content: "Web development continues to evolve at a rapid pace. In 2024, we're seeing significant shifts toward more interactive, AI-powered experiences. Frameworks like React, Vue, and Svelte are becoming more sophisticated, while new technologies like WebAssembly are opening doors to previously impossible web applications.",
-                excerpt: "Exploring the latest trends and technologies shaping the future of web development.",
-                image: "https://placehold.co/800x400/3b82f6/ffffff?text=Web+Development",
-                tags: ["web development", "technology", "javascript", "future"]
+                content: "Vertical gardening is revolutionizing how we think about urban farming. When space is limited, growing upwards rather than outwards becomes essential. This comprehensive guide explores various vertical gardening techniques, from simple trellises to sophisticated hydroponic wall systems. We'll cover which plants work best for vertical growth, how to ensure proper irrigation, and creative DIY solutions for renters and homeowners alike. With the right approach, even the smallest balcony or patio can become a lush, productive garden that provides fresh produce and enhances your living space.",
+                excerpt: "Learn how to transform your limited urban space into a productive vertical garden with these practical techniques.",
+                image: "https://placehold.co/800x400/22c55e/ffffff?text=Vertical+Gardening",
+                tags: ["vertical gardening", "small spaces", "urban farming", "DIY"]
             },
             {
                 id: 2,
-                title: "Sustainable Living: Small Changes, Big Impact",
-                author: "Jane Smith",
+                slug: "container-gardening-for-beginners",
+                title: "Container Gardening 101: Perfect for Urban Dwellers",
+                author: "Mike Thompson",
                 date: "2024-01-12",
-                content: "Sustainable living doesn't require drastic lifestyle changes. Simple adjustments like reducing single-use plastics, conserving water, and supporting local businesses can collectively make a significant difference. This post explores practical, everyday changes anyone can implement to reduce their environmental footprint.",
-                excerpt: "Discover how small, manageable changes in your daily routine can contribute to a more sustainable future.",
-                image: "https://placehold.co/800x400/10b981/ffffff?text=Sustainable+Living",
-                tags: ["sustainability", "environment", "lifestyle", "eco-friendly"]
+                content: "Container gardening is the perfect entry point for urban residents looking to grow their own food. This beginner's guide covers everything you need to know, from selecting the right containers and soil mixtures to choosing plants that thrive in pots. We'll discuss drainage requirements, sunlight considerations, and how to prevent common problems like root rot and nutrient deficiencies. Whether you have a sunny windowsill, a balcony, or a small patio, you'll discover how to create a thriving container garden that provides fresh herbs, vegetables, and flowers throughout the growing season.",
+                excerpt: "Start your urban farming journey with this comprehensive guide to container gardening for beginners.",
+                image: "https://placehold.co/800x400/10b981/ffffff?text=Container+Gardening",
+                tags: ["container gardening", "beginners", "urban farming", "herbs"]
             },
             {
                 id: 3,
-                title: "The Art of Mindful Meditation",
-                author: "Alex Chen",
+                slug: "composting-in-apartments",
+                title: "Composting in Apartments: No Yard Required",
+                author: "Lisa Chen",
                 date: "2024-01-10",
-                content: "Mindful meditation has gained popularity as a powerful tool for reducing stress and improving mental clarity. This comprehensive guide covers various meditation techniques, their benefits, and practical tips for establishing a consistent meditation practice in our busy modern lives.",
-                excerpt: "Learn how to incorporate mindfulness meditation into your daily routine for improved mental health.",
-                image: "https://placehold.co/800x400/8b5cf6/ffffff?text=Mindful+Meditation",
-                tags: ["meditation", "mindfulness", "mental health", "wellness"]
+                content: "You don't need a backyard to create nutrient-rich compost for your urban garden. This guide explores various apartment-friendly composting methods, including vermicomposting (worm composting), bokashi fermentation, and electric composters. We'll cover what materials you can compost, how to avoid odors and pests, and how to use your finished compost to nourish your plants. With a little planning and the right system, you can turn your kitchen scraps into 'black gold' that will supercharge your urban farm while reducing your household waste.",
+                excerpt: "Discover how to turn kitchen scraps into nutrient-rich compost even in the smallest urban apartments.",
+                image: "https://placehold.co/800x400/8b5cf6/ffffff?text=Apartment+Composting",
+                tags: ["composting", "apartments", "sustainability", "zero waste"]
             },
             {
                 id: 4,
-                title: "Exploring the World of Specialty Coffee",
-                author: "Maria Rodriguez",
+                slug: "balcony-vegetable-garden",
+                title: "Creating a Productive Balcony Vegetable Garden",
+                author: "David Rodriguez",
                 date: "2024-01-08",
-                content: "Specialty coffee represents the highest quality coffee beans, carefully sourced, roasted, and brewed to highlight unique flavor profiles. From Ethiopian Yirgacheffe to Colombian Supremo, this post takes you on a journey through the fascinating world of specialty coffee and how to appreciate its nuances.",
-                excerpt: "A comprehensive guide to understanding and appreciating specialty coffee from around the world.",
-                image: "https://placehold.co/800x400/f59e0b/ffffff?text=Specialty+Coffee",
-                tags: ["coffee", "food", "beverages", "culture"]
+                content: "Your balcony holds untapped potential as a productive vegetable garden. This detailed guide walks you through assessing your balcony's conditions (sun exposure, wind patterns, weight limits) and selecting the perfect vegetables for your space. We'll cover container selection, soil preparation, watering systems, and companion planting techniques specifically designed for balcony environments. Learn which vegetables thrive in containers, how to maximize yields in limited space, and creative solutions for common balcony gardening challenges like limited sunlight or exposure to wind.",
+                excerpt: "Transform your balcony into a productive vegetable garden with these expert tips and techniques.",
+                image: "https://placehold.co/800x400/f59e0b/ffffff?text=Balcony+Garden",
+                tags: ["balcony garden", "vegetables", "urban farming", "containers"]
             },
             {
                 id: 5,
-                title: "Digital Minimalism: Decluttering Your Online Life",
-                author: "David Kim",
+                slug: "indoor-herb-garden-year-round",
+                title: "Year-Round Indoor Herb Garden: Fresh Flavors at Your Fingertips",
+                author: "Emma Wilson",
                 date: "2024-01-05",
-                content: "In our increasingly digital world, information overload has become a serious issue. Digital minimalism offers a philosophy for intentionally using technology to support your values rather than distract from them. This post provides practical strategies for decluttering your digital spaces and reclaiming your attention.",
-                excerpt: "Strategies for reducing digital clutter and creating a more intentional relationship with technology.",
-                image: "https://placehold.co/800x400/ef4444/ffffff?text=Digital+Minimalism",
-                tags: ["digital", "minimalism", "productivity", "technology"]
+                content: "Imagine snipping fresh basil, rosemary, or mint for your meals regardless of the season outside. This guide shows you how to create a thriving indoor herb garden that provides fresh flavors year-round. We'll cover lighting requirements (including affordable grow light options), proper watering techniques, choosing the right containers with adequate drainage, and selecting herbs that adapt well to indoor conditions. You'll also learn about harvesting techniques that encourage continued growth and how to troubleshoot common problems like leggy growth or pest infestations.",
+                excerpt: "Keep fresh herbs growing in your kitchen all year with this comprehensive indoor gardening guide.",
+                image: "https://placehold.co/800x400/ef4444/ffffff?text=Indoor+Herbs",
+                tags: ["indoor gardening", "herbs", "year-round", "kitchen garden"]
             },
             {
                 id: 6,
-                title: "The Rise of Remote Work: Challenges and Opportunities",
-                author: "Sarah Johnson",
+                slug: "community-gardening-benefits",
+                title: "The Surprising Benefits of Community Gardening",
+                author: "James Park",
                 date: "2024-01-03",
-                content: "Remote work has transformed from a temporary solution to a permanent fixture in many industries. While offering flexibility and improved work-life balance, it also presents unique challenges. This post examines the evolving landscape of remote work and provides tips for thriving in a distributed work environment.",
-                excerpt: "Navigating the new normal of remote work and maximizing its benefits while overcoming its challenges.",
-                image: "https://placehold.co/800x400/06b6d4/ffffff?text=Remote+Work",
-                tags: ["remote work", "career", "productivity", "work-life balance"]
+                content: "Community gardens offer benefits that extend far beyond fresh produce. This article explores the social, psychological, and environmental advantages of participating in or establishing a community garden in your neighborhood. From building stronger community bonds and reducing crime rates to improving mental health and creating urban biodiversity hotspots, community gardens are powerful tools for positive change. We'll also cover practical tips for starting a community garden, navigating local regulations, and fostering inclusive participation that benefits all members of your community.",
+                excerpt: "Discover the far-reaching social, psychological, and environmental benefits of community gardening initiatives.",
+                image: "https://placehold.co/800x400/06b6d4/ffffff?text=Community+Garden",
+                tags: ["community garden", "social benefits", "urban planning", "sustainability"]
             },
             {
                 id: 7,
-                title: "Urban Gardening: Growing Food in Small Spaces",
-                author: "Tom Wilson",
+                slug: "rainwater-harvesting-urban-farms",
+                title: "Rainwater Harvesting for Urban Farms: Conservation and Savings",
+                author: "Tom Lee",
                 date: "2023-12-28",
-                content: "You don't need a backyard to grow your own food. Urban gardening techniques allow city dwellers to cultivate herbs, vegetables, and even fruits in balconies, windowsills, and rooftops. This guide covers container gardening, vertical gardening, and other space-efficient methods for urban agriculture.",
-                excerpt: "Transform your small urban space into a productive garden with these practical techniques.",
-                image: "https://placehold.co/800x400/22c55e/ffffff?text=Urban+Gardening",
-                tags: ["gardening", "urban", "sustainability", "food"]
+                content: "Rainwater harvesting is an essential practice for sustainable urban farming. This comprehensive guide covers various rainwater collection systems suitable for urban environments, from simple barrel setups to more sophisticated filtration and storage solutions. We'll discuss local regulations, calculating your water needs, proper maintenance to prevent mosquito breeding, and creative ways to integrate rainwater harvesting into your existing urban farm setup. Learn how to reduce your water bills, conserve this precious resource, and create a more resilient gardening system that can withstand drought conditions.",
+                excerpt: "Implement rainwater harvesting in your urban farm to conserve water and reduce utility costs.",
+                image: "https://placehold.co/800x400/22c55e/ffffff?text=Rainwater+Harvesting",
+                tags: ["rainwater harvesting", "water conservation", "sustainability", "urban farming"]
             },
             {
                 id: 8,
-                title: "The Psychology of Color in Design",
-                author: "Lisa Brown",
+                slug: "pollinator-friendly-urban-gardens",
+                title: "Creating Pollinator-Friendly Urban Gardens",
+                author: "Anna Martinez",
                 date: "2023-12-25",
-                content: "Color psychology plays a crucial role in design, influencing emotions, perceptions, and behaviors. Understanding how different colors affect viewers can help create more effective designs, whether for websites, products, or marketing materials. This post explores the psychological impact of various colors and their applications in design.",
-                excerpt: "How color choices influence user experience and emotional response in design projects.",
-                image: "https://placehold.co/800x400/ec4899/ffffff?text=Color+Psychology",
-                tags: ["design", "psychology", "color theory", "creativity"]
+                content: "Pollinators are essential for productive urban gardens, yet many cities have become 'food deserts' for bees, butterflies, and other beneficial insects. This guide shows you how to transform your urban garden into a pollinator paradise. We'll cover selecting native plants that attract and nourish pollinators, creating habitat features like bee hotels and butterfly puddling stations, avoiding harmful pesticides, and designing your garden layout to maximize pollinator visits. By making your urban farm pollinator-friendly, you'll not only increase your yields but also contribute to the vital conservation of these essential creatures.",
+                excerpt: "Transform your urban garden into a haven for bees, butterflies, and other essential pollinators.",
+                image: "https://placehold.co/800x400/ec4899/ffffff?text=Pollinator+Garden",
+                tags: ["pollinators", "bees", "butterflies", "native plants"]
             }
         ];
 
@@ -695,17 +757,28 @@
         const detailImageElement = document.getElementById('detailImage');
         const detailContentElement = document.getElementById('detailContent');
         const detailTagsElement = document.getElementById('detailTags');
+        const permalinkElement = document.getElementById('permalink');
+        const permalinkUrlElement = document.getElementById('permalinkUrl');
+        const copyPermalinkElement = document.getElementById('copyPermalink');
+        const toastElement = document.getElementById('toast');
 
         // State
         let currentPage = 1;
         const postsPerPage = 6;
         let searchTerm = '';
         let filteredPosts = [...blogPosts];
+        let currentPost = null;
 
         // Format date
         function formatDate(dateString) {
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             return new Date(dateString).toLocaleDateString(undefined, options);
+        }
+
+        // Generate permalink URL
+        function generatePermalink(post) {
+            const baseUrl = window.location.origin + window.location.pathname;
+            return `${baseUrl}#${post.slug}`;
         }
 
         // Create post card
@@ -735,6 +808,8 @@
 
         // Show post detail
         function showPostDetail(post) {
+            currentPost = post;
+            
             // Hide grid and show detail
             postsGridElement.classList.add('hidden');
             paginationElement.classList.add('hidden');
@@ -746,6 +821,11 @@
                 <span>By ${post.author}</span>
                 <span>${formatDate(post.date)}</span>
             `;
+            
+            // Set permalink
+            const permalinkUrl = generatePermalink(post);
+            permalinkUrlElement.textContent = permalinkUrl;
+            
             detailImageElement.src = post.image;
             detailImageElement.alt = post.title;
             detailContentElement.textContent = post.content;
@@ -759,6 +839,9 @@
                 detailTagsElement.appendChild(tagElement);
             });
             
+            // Update URL hash
+            history.pushState(null, '', `#${post.slug}`);
+            
             // Scroll to top
             window.scrollTo(0, 0);
         }
@@ -770,6 +853,8 @@
             if (filteredPosts.length > postsPerPage) {
                 paginationElement.classList.remove('hidden');
             }
+            currentPost = null;
+            history.pushState(null, '', window.location.pathname);
             window.scrollTo(0, 0);
         }
 
@@ -866,6 +951,28 @@
             }
         }
 
+        // Copy permalink to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Show toast notification
+                toastElement.classList.add('show');
+                setTimeout(() => {
+                    toastElement.classList.remove('show');
+                }, 3000);
+            });
+        }
+
+        // Check URL hash on load and navigate to post if present
+        function checkUrlHash() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                const post = blogPosts.find(p => p.slug === hash);
+                if (post) {
+                    showPostDetail(post);
+                }
+            }
+        }
+
         // Initialize
         function init() {
             // Simulate loading
@@ -873,6 +980,9 @@
                 loadingElement.classList.add('hidden');
                 postsGridElement.classList.remove('hidden');
                 renderPosts();
+                
+                // Check if there's a post slug in the URL
+                checkUrlHash();
             }, 1000);
             
             // Event listeners
@@ -882,6 +992,26 @@
                 filterPosts();
             });
             backBtn.addEventListener('click', showPostsGrid);
+            copyPermalinkElement.addEventListener('click', () => {
+                if (currentPost) {
+                    copyToClipboard(generatePermalink(currentPost));
+                }
+            });
+            
+            // Handle browser back/forward buttons
+            window.addEventListener('popstate', () => {
+                const hash = window.location.hash.substring(1);
+                if (hash) {
+                    const post = blogPosts.find(p => p.slug === hash);
+                    if (post) {
+                        showPostDetail(post);
+                    } else {
+                        showPostsGrid();
+                    }
+                } else {
+                    showPostsGrid();
+                }
+            });
         }
 
         // Start the application

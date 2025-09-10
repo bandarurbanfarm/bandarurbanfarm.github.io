@@ -685,6 +685,9 @@
         .footer-content {
             text-align: center;
             margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .footer-logo {
@@ -698,8 +701,6 @@
             color: var(--light-text);
             margin-bottom: 24px;
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .social-links {
@@ -725,6 +726,7 @@
             font-size: 0.9rem;
             padding-top: 24px;
             border-top: 1px solid var(--border-color);
+            width: 100%;
         }
 
         /* Loading Spinner */
@@ -1180,7 +1182,7 @@
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/g, '-')
                 .replace(/(^-|-$)/g, '');
-            return `${baseUrl}post/${titleSlug}`;
+            return `${baseUrl}#post=${titleSlug}`;
         }
 
         // Update document title for SEO
@@ -1192,185 +1194,61 @@
             }
         }
 
-        // Update URL for SEO without refreshing page
-        function updatePageUrl(title, id) {
-            const titleSlug = title
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/(^-|-$)/g, '');
+        // Parse CSV to array of objects
+        function parseCSV(csv) {
+            const lines = csv.split('\n').filter(line => line.trim() !== '');
+            const headers = lines[0].split(',').map(h => h.trim());
             
-            const newUrl = `${window.location.origin}${window.location.pathname}post/${titleSlug}`;
-            window.history.pushState({ id }, title, newUrl);
+            return lines.slice(1).map(line => {
+                const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                return headers.reduce((obj, header, i) => {
+                    let value = values[i] ? values[i].trim() : '';
+                    if (value.startsWith('"') && value.endsWith('"')) {
+                        value = value.slice(1, -1);
+                    }
+                    obj[header] = value;
+                    return obj;
+                }, {});
+            }).filter(post => post.id && post.title); // Filter out empty rows
         }
 
-        // Simple CSV parser that handles basic CSV format
-        function simpleCSVParser(csvText) {
-            try {
-                console.log('Parsing CSV data...');
-                
-                // Split by lines and remove empty lines
-                const lines = csvText.split('\n').filter(line => line.trim().length > 0);
-                if (lines.length < 2) {
-                    console.log('CSV has less than 2 lines');
-                    return [];
-                }
-                
-                // Get headers from first line
-                const headers = lines[0].split(',').map(header => header.trim().replace(/^"|"$/g, ''));
-                console.log('Headers:', headers);
-                
-                // Process data rows
-                const posts = [];
-                for (let i = 1; i < lines.length; i++) {
-                    const line = lines[i].trim();
-                    if (!line) continue;
-                    
-                    // Simple split by comma (this will work for basic CSV without commas in fields)
-                    const values = line.split(',').map(value => value.trim().replace(/^"|"$/g, ''));
-                    
-                    // Create post object
-                    const post = {};
-                    for (let j = 0; j < headers.length && j < values.length; j++) {
-                        post[headers[j]] = values[j];
-                    }
+        // Load blog posts from CSV
+        function loadBlogPosts() {
+            fetch('https://bandarurbanfarm.github.io/blogposts.csv')
+                .then(response => response.text())
+                .then(csvText => {
+                    blogPosts = parseCSV(csvText);
                     
                     // Process tags if they exist
-                    if (post.tags && typeof post.tags === 'string') {
-                        post.tags = post.tags.split('|').map(tag => tag.trim()).filter(tag => tag);
-                    } else {
-                        post.tags = [];
-                    }
-                    
-                    // Ensure we have minimum required fields
-                    if (post.title && post.slug) {
-                        posts.push(post);
-                        console.log('Added post:', post.title);
-                    } else {
-                        console.log('Skipping post due to missing required fields');
-                    }
-                }
-                
-                console.log('Total posts parsed:', posts.length);
-                return posts;
-            } catch (error) {
-                console.error('Error parsing CSV:', error);
-                return [];
-            }
-        }
-
-        // Fetch blog posts with multiple fallback strategies
-        async function fetchBlogPosts() {
-            try {
-                console.log('Starting to fetch blog posts...');
-                
-                // Define the CSV URL
-                const csvUrl = 'https://bandarurbanfarm.github.io/blogposts.csv';
-                
-                // Try multiple approaches to fetch the CSV
-                let csvData = null;
-                
-                // Approach 1: Try fetch with different headers
-                try {
-                    console.log('Trying fetch with default settings...');
-                    const response = await fetch(csvUrl, {
-                        method: 'GET',
-                        headers: {
-                            'Accept': 'text/csv, text/plain, */*'
-                        },
-                        mode: 'cors',
-                        cache: 'no-cache'
+                    blogPosts.forEach(post => {
+                        if (post.tags && typeof post.tags === 'string') {
+                            post.tags = post.tags.split('|').map(tag => tag.trim()).filter(tag => tag);
+                        } else {
+                            post.tags = [];
+                        }
                     });
                     
-                    if (response.ok) {
-                        csvData = await response.text();
-                        console.log('Successfully fetched CSV with default settings');
-                    } else {
-                        console.log('Failed with default settings, status:', response.status);
+                    console.log('Loaded blog posts:', blogPosts);
+                    
+                    if (blogPosts.length === 0) {
+                        throw new Error('No valid posts found in CSV data');
                     }
-                } catch (error) {
-                    console.log('Error with default fetch:', error);
-                }
-                
-                // Approach 2: If fetch failed, try with no-cors mode (limited but might work)
-                if (!csvData) {
-                    try {
-                        console.log('Trying fetch with no-cors mode...');
-                        const response = await fetch(csvUrl, {
-                            method: 'GET',
-                            mode: 'no-cors'
-                        });
-                        
-                        // Note: with no-cors, we can't read the response body
-                        // So this approach won't work for our use case
-                        console.log('no-cors mode doesn\'t allow reading response body');
-                    } catch (error) {
-                        console.log('Error with no-cors fetch:', error);
-                    }
-                }
-                
-                // Approach 3: Use XMLHttpRequest as fallback
-                if (!csvData) {
-                    try {
-                        console.log('Trying XMLHttpRequest...');
-                        csvData = await new Promise((resolve, reject) => {
-                            const xhr = new XMLHttpRequest();
-                            xhr.open('GET', csvUrl, true);
-                            xhr.onreadystatechange = function() {
-                                if (xhr.readyState === 4) {
-                                    if (xhr.status === 200) {
-                                        resolve(xhr.responseText);
-                                    } else {
-                                        reject(new Error(`HTTP ${xhr.status}: ${xhr.statusText}`));
-                                    }
-                                }
-                            };
-                            xhr.onerror = function() {
-                                reject(new Error('Network error'));
-                            };
-                            xhr.send();
-                        });
-                        console.log('Successfully fetched CSV with XMLHttpRequest');
-                    } catch (error) {
-                        console.log('Error with XMLHttpRequest:', error);
-                    }
-                }
-                
-                // Fallback: Use hardcoded data if all fetch attempts failed
-                if (!csvData) {
-                    console.log('All fetch attempts failed, using hardcoded data');
-                    csvData = `id,slug,title,author,date,content,excerpt,image,tags
-1,vertical-gardening-in-small-spaces,Vertical Gardening: Maximizing Small Urban Spaces,Sarah Green,2024-01-15,"Vertical gardening is revolutionizing how we think about urban farming. When space is limited, growing upwards rather than outwards becomes essential. This comprehensive guide explores various vertical gardening techniques, from simple trellises to sophisticated hydroponic wall systems. We'll cover which plants work best for vertical growth, how to ensure proper irrigation, and creative DIY solutions for renters and homeowners alike. With the right approach, even the smallest balcony or patio can become a lush, productive garden that provides fresh produce and enhances your living space.",Learn how to transform your limited urban space into a productive vertical garden with these practical techniques.,https://placehold.co/800x400/22c55e/ffffff?text=Vertical+Gardening,"vertical gardening|small spaces|urban farming|DIY"
-2,container-gardening-for-beginners,Container Gardening 101: Perfect for Urban Dwellers,Mike Thompson,2024-01-12,"Container gardening is the perfect entry point for urban residents looking to grow their own food. This beginner's guide covers everything you need to know, from selecting the right containers and soil mixtures to choosing plants that thrive in pots. We'll discuss drainage requirements, sunlight considerations, and how to prevent common problems like root rot and nutrient deficiencies. Whether you have a sunny windowsill, a balcony, or a small patio, you'll discover how to create a thriving container garden that provides fresh herbs, vegetables, and flowers throughout the growing season.",Start your urban farming journey with this comprehensive guide to container gardening for beginners.,https://placehold.co/800x400/10b981/ffffff?text=Container+Gardening,"container gardening|beginners|urban farming|herbs"
-3,composting-in-apartments,Composting in Apartments: No Yard Required,Lisa Chen,2024-01-10,"You don't need a backyard to create nutrient-rich compost for your urban garden. This guide explores various apartment-friendly composting methods, including vermicomposting (worm composting), bokashi fermentation, and electric composters. We'll cover what materials you can compost, how to avoid odors and pests, and how to use your finished compost to nourish your plants. With a little planning and the right system, you can turn your kitchen scraps into 'black gold' that will supercharge your urban farm while reducing your household waste.",Discover how to turn kitchen scraps into nutrient-rich compost even in the smallest urban apartments.,https://placehold.co/800x400/8b5cf6/ffffff?text=Apartment+Composting,"composting|apartments|sustainability|zero waste"
-4,balcony-vegetable-garden,Creating a Productive Balcony Vegetable Garden,David Rodriguez,2024-01-08,"Your balcony holds untapped potential as a productive vegetable garden. This detailed guide walks you through assessing your balcony's conditions (sun exposure, wind patterns, weight limits) and selecting the perfect vegetables for your space. We'll cover container selection, soil preparation, watering systems, and companion planting techniques specifically designed for balcony environments. Learn which vegetables thrive in containers, how to maximize yields in limited space, and creative solutions for common balcony gardening challenges like limited sunlight or exposure to wind.",Transform your balcony into a productive vegetable garden with these expert tips and techniques.,https://placehold.co/800x400/f59e0b/ffffff?text=Balcony+Garden,"balcony garden|vegetables|urban farming|containers"
-5,indoor-herb-garden-year-round,Year-Round Indoor Herb Garden: Fresh Flavors at Your Fingertips,Emma Wilson,2024-01-05,"Imagine snipping fresh basil, rosemary, or mint for your meals regardless of the season outside. This guide shows you how to create a thriving indoor herb garden that provides fresh flavors year-round. We'll cover lighting requirements (including affordable grow light options), proper watering techniques, choosing the right containers with adequate drainage, and selecting herbs that adapt well to indoor conditions. You'll also learn about harvesting techniques that encourage continued growth and how to troubleshoot common problems like leggy growth or pest infestations.",Keep fresh herbs growing in your kitchen all year with this comprehensive indoor gardening guide.,https://placehold.co/800x400/ef4444/ffffff?text=Indoor+Herbs,"indoor gardening|herbs|year-round|kitchen garden"
-6,community-gardening-benefits,The Surprising Benefits of Community Gardening,James Park,2024-01-03,"Community gardens offer benefits that extend far beyond fresh produce. This article explores the social, psychological, and environmental advantages of participating in or establishing a community garden in your neighborhood. From building stronger community bonds and reducing crime rates to improving mental health and creating urban biodiversity hotspots, community gardens are powerful tools for positive change. We'll also cover practical tips for starting a community garden, navigating local regulations, and fostering inclusive participation that benefits all members of your community.",Discover the far-reaching social, psychological, and environmental benefits of community gardening initiatives.,https://placehold.co/800x400/06b6d4/ffffff?text=Community+Garden,"community garden|social benefits|urban planning|sustainability"`;
-                }
-                
-                // Parse the CSV data
-                blogPosts = simpleCSVParser(csvData);
-                console.log('Parsed blog posts:', blogPosts);
-                
-                if (blogPosts.length === 0) {
-                    throw new Error('No valid posts found after parsing');
-                }
-                
-                filteredPosts = [...blogPosts];
-                
-                // Hide loading, show posts
-                loadingElement.classList.add('hidden');
-                postsGridElement.classList.remove('hidden');
-                renderPosts();
-                
-                // Check URL for direct post link
-                checkUrlForPost();
-                
-                console.log('Blog posts loaded successfully');
-                
-            } catch (error) {
-                console.error('Error in fetchBlogPosts:', error);
-                showErrorState();
-            }
+                    
+                    filteredPosts = [...blogPosts];
+                    
+                    // Hide loading, show posts
+                    loadingElement.classList.add('hidden');
+                    postsGridElement.classList.remove('hidden');
+                    renderPosts();
+                    
+                    // Check URL for direct post link
+                    checkUrlForPost();
+                    
+                })
+                .catch(error => {
+                    console.error('Error loading blog posts:', error);
+                    showErrorState();
+                });
         }
 
         // Show error state
@@ -1383,7 +1261,7 @@
         function retryFetch() {
             errorStateElement.classList.add('hidden');
             loadingElement.classList.remove('hidden');
-            fetchBlogPosts();
+            loadBlogPosts();
         }
 
         // Create post card
@@ -1428,7 +1306,11 @@
             updateDocumentTitle(post.title);
             
             // Update URL for SEO with post title
-            updatePageUrl(post.title, post.id);
+            const titleSlug = post.title
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)/g, '');
+            window.history.pushState({ post: titleSlug }, post.title, `#post=${titleSlug}`);
             
             // Hide grid and show detail
             homePage.classList.add('hidden');
@@ -1482,11 +1364,11 @@
             } else if (pageId === 'about') {
                 aboutPage.classList.remove('hidden');
                 updateDocumentTitle('About Us');
-                window.history.pushState({ page: 'about' }, 'About - Bandar Urban Farm', window.location.pathname + 'about');
+                window.history.pushState({ page: 'about' }, 'About - Bandar Urban Farm', window.location.pathname + '#about');
             } else if (pageId === 'contact') {
                 contactPage.classList.remove('hidden');
                 updateDocumentTitle('Contact Us');
-                window.history.pushState({ page: 'contact' }, 'Contact - Bandar Urban Farm', window.location.pathname + 'contact');
+                window.history.pushState({ page: 'contact' }, 'Contact - Bandar Urban Farm', window.location.pathname + '#contact');
             }
             
             // Update active nav link
@@ -1655,22 +1537,10 @@
 
         // Check URL for post on load
         function checkUrlForPost() {
-            const path = window.location.pathname;
-            const urlParts = path.split('/');
-            const lastPart = urlParts[urlParts.length - 1];
+            const hash = window.location.hash;
             
-            if (lastPart === 'about') {
-                showPage('about');
-                return;
-            }
-            
-            if (lastPart === 'contact') {
-                showPage('contact');
-                return;
-            }
-            
-            if (path.includes('post/')) {
-                const postSlug = lastPart;
+            if (hash.includes('post=')) {
+                const postSlug = hash.split('=')[1];
                 // Find post by converting title to slug format
                 const post = blogPosts.find(p => {
                     const titleSlug = p.title
@@ -1684,6 +1554,12 @@
                     showPostDetail(post);
                     return;
                 }
+            } else if (hash === '#about') {
+                showPage('about');
+                return;
+            } else if (hash === '#contact') {
+                showPage('contact');
+                return;
             }
             
             // Default to home page
@@ -1708,8 +1584,8 @@
         function init() {
             console.log('Initializing Bandar Urban Farm blog...');
             
-            // Fetch blog posts from CSV
-            fetchBlogPosts();
+            // Load blog posts from CSV
+            loadBlogPosts();
             
             // Event listeners
             searchInput.addEventListener('input', filterPosts);

@@ -607,12 +607,8 @@
             background-color: #1877f2;
         }
 
-        .twitter-btn {
-            background-color: #1da1f2;
-        }
-
-        .linkedin-btn {
-            background-color: #0077b5;
+        .whatsapp-btn {
+            background-color: #25D366;
         }
 
         /* About and Contact Pages */
@@ -736,6 +732,7 @@
             align-items: center;
             justify-content: center;
             min-height: 300px;
+            grid-column: 1 / -1;
         }
 
         .spinner {
@@ -782,6 +779,7 @@
             text-align: center;
             padding: 60px 20px;
             color: #ef4444;
+            grid-column: 1 / -1;
         }
 
         .error-icon {
@@ -910,7 +908,7 @@
             <!-- Desktop Navigation -->
             <nav class="desktop-nav">
                 <ul>
-                    <li><a href="#" class="nav-link active" data-page="home">Blog</a></li>
+                    <li><a href="#" class="nav-link active" data-page="home">Home (Beranda)</a></li>
                     <li><a href="#" class="nav-link" data-page="about">About</a></li>
                     <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
                 </ul>
@@ -934,7 +932,7 @@
         <span class="close-menu" id="closeMenu">&times;</span>
         <h3>Menu</h3>
         <ul>
-            <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> Blog</a></li>
+            <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> Home (Beranda)</a></li>
             <li><a href="#" class="nav-link" data-page="about"><i class="fas fa-info-circle"></i> About</a></li>
             <li><a href="#" class="nav-link" data-page="contact"><i class="fas fa-phone-alt"></i> Contact</a></li>
         </ul>
@@ -948,7 +946,7 @@
         <div class="container hero-content">
             <h2>Grow Your Urban Oasis</h2>
             <p>Discover practical guides and tips for transforming your urban space into a productive garden</p>
-            <button class="cta-button">Explore Our Guides</button>
+            <a href="https://wa.me/6285773009666" target="_blank" class="cta-button">Explore Our Guides</a>
         </div>
     </section>
 
@@ -1088,14 +1086,11 @@
             <div class="share-section">
                 <h3>Share this post</h3>
                 <div class="share-buttons">
-                    <button class="share-btn facebook-btn">
+                    <button class="share-btn facebook-btn" id="facebookShare">
                         <i class="fab fa-facebook-f"></i> Facebook
                     </button>
-                    <button class="share-btn twitter-btn">
-                        <i class="fab fa-twitter"></i> Twitter
-                    </button>
-                    <button class="share-btn linkedin-btn">
-                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                    <button class="share-btn whatsapp-btn" id="whatsappShare">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
                     </button>
                 </div>
             </div>
@@ -1158,6 +1153,8 @@
         const aboutPage = document.getElementById('aboutPage');
         const contactPage = document.getElementById('contactPage');
         const navLinks = document.querySelectorAll('.nav-link');
+        const facebookShare = document.getElementById('facebookShare');
+        const whatsappShare = document.getElementById('whatsappShare');
 
         // State
         let blogPosts = [];
@@ -1343,6 +1340,18 @@
                 tagElement.textContent = tag;
                 detailTagsElement.appendChild(tagElement);
             });
+            
+            // Update share buttons
+            const shareUrl = encodeURIComponent(permalinkUrl);
+            const shareText = encodeURIComponent(post.title);
+            
+            facebookShare.onclick = () => {
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`, '_blank');
+            };
+            
+            whatsappShare.onclick = () => {
+                window.open(`https://wa.me/?text=${shareText}%20${shareUrl}`, '_blank');
+            };
             
             // Scroll to top
             window.scrollTo(0, 0);

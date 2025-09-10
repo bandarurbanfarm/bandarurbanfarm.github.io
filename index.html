@@ -3,7 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bandar Urban Farm - Fixed Navigation</title>
+    <meta name="description" content="Bandar Urban Farm - Transforming urban spaces into thriving gardens. Learn about vertical gardening, container gardening, composting, and more.">
+    <meta name="keywords" content="urban farming, gardening, sustainable living, vertical gardening, container gardening, composting, balcony garden, indoor herbs">
+    <meta name="author" content="Bandar Urban Farm">
+    <meta property="og:title" content="Bandar Urban Farm - Urban Gardening Solutions">
+    <meta property="og:description" content="Transforming urban spaces into thriving gardens. Practical guides for city dwellers who want to grow their own food.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bandarurbanfarm.github.io/">
+    <meta property="og:image" content="https://placehold.co/1200x630/22c55e/ffffff?text=Bandar+Urban+Farm">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bandar Urban Farm - Urban Gardening Solutions">
+    <meta name="twitter:description" content="Transforming urban spaces into thriving gardens. Practical guides for city dwellers who want to grow their own food.">
+    <meta name="twitter:image" content="https://placehold.co/1200x630/22c55e/ffffff?text=Bandar+Urban+Farm">
+    <title>Bandar Urban Farm - Transforming Urban Spaces into Thriving Gardens</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
@@ -215,44 +227,127 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://placehold.co/1200x600/22c55e/ffffff?text=Urban+Farming') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
             color: white;
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
             margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.7) 0%, rgba(16, 185, 129, 0.7) 100%);
+            z-index: -1;
         }
 
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         .cta-button {
-            background-color: var(--primary-color);
+            background-color: var(--accent-color);
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-size: 1rem;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
-            display: inline-block;
-            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(245, 158, 11, 0.3);
         }
 
         .cta-button:hover {
-            background-color: var(--secondary-color);
+            background-color: #e69008;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .newsletter p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .newsletter-button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-button:hover {
+            background-color: #e69008;
         }
 
         /* Main Content Styles */
@@ -277,16 +372,6 @@
             background-color: var(--primary-color);
         }
 
-        /* Page Styles */
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        /* Posts Grid */
         .posts-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -397,14 +482,243 @@
             font-weight: 500;
         }
 
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 40px;
+        }
+
+        .pagination-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            background-color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background-color: #f3f4f6;
+        }
+
+        .pagination-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            grid-column: 1 / -1;
+        }
+
+        .empty-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 24px;
+            color: #9ca3af;
+        }
+
+        .empty-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .empty-message {
+            color: var(--light-text);
+            margin-bottom: 24px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .clear-btn {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+
+        .clear-btn:hover {
+            background-color: #16a34a;
+        }
+
+        /* Post Detail View */
+        .post-detail {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 24px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            background: none;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .back-btn:hover {
+            color: #16a34a;
+        }
+
+        .post-detail-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .post-detail-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--light-text);
+            margin-bottom: 16px;
+            gap: 16px;
+        }
+
+        .permalink {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            margin-bottom: 24px;
+            padding: 12px;
+            background-color: #f0fdf4;
+            border-radius: 6px;
+            border: 1px solid #bbf7d0;
+        }
+
+        .permalink-icon {
+            margin-right: 8px;
+        }
+
+        .copy-permalink {
+            margin-left: 8px;
+            cursor: pointer;
+            color: var(--secondary-color);
+        }
+
+        .copy-permalink:hover {
+            text-decoration: underline;
+        }
+
+        .post-detail-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 32px;
+        }
+
+        .post-detail-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: var(--text-color);
+        }
+
+        .post-detail-tags {
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
+            margin-bottom: 40px;
+        }
+
+        .post-detail-tags h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .share-section {
+            border-top: 1px solid var(--border-color);
+            padding-top: 32px;
+            margin-top: 24px;
+        }
+
+        .share-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .share-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .share-btn:hover {
+            opacity: 0.9;
+        }
+
+        .facebook-btn {
+            background-color: #1877f2;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+        }
+
         /* About and Contact Pages */
+        .page {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
         .page-content {
             background: white;
             padding: 30px;
             border-radius: 12px;
             box-shadow: var(--shadow);
-            max-width: 800px;
-            margin: 0 auto;
         }
 
         .page-section {
@@ -441,6 +755,57 @@
             font-size: 1.2rem;
         }
 
+        /* Contact Form */
+        .contact-form {
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
         /* Footer */
         footer {
             background-color: white;
@@ -468,6 +833,8 @@
             color: var(--light-text);
             margin-bottom: 24px;
             max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .social-links {
@@ -494,6 +861,100 @@
             padding-top: 24px;
             border-top: 1px solid var(--border-color);
             width: 100%;
+        }
+
+        /* Loading Spinner */
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            grid-column: 1 / -1;
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid rgba(34, 197, 94, 0.1);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 16px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: var(--light-text);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #16a34a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        /* Error State */
+        .error-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #ef4444;
+            grid-column: 1 / -1;
+            display: none;
+        }
+
+        .error-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 24px;
+            color: #ef4444;
+        }
+
+        .error-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .error-message {
+            color: #ef4444;
+            margin-bottom: 24px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .retry-btn {
+            padding: 10px 20px;
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+
+        .retry-btn:hover {
+            background-color: #dc2626;
         }
 
         /* Overlay */
@@ -545,11 +1006,36 @@
             .hero p {
                 font-size: 1rem;
             }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .post-detail-image {
+                height: 300px;
+            }
+            
+            .post-detail-title {
+                font-size: 1.5rem;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+            }
         }
 
         /* Utility Classes */
         .hidden {
             display: none !important;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
@@ -607,132 +1093,60 @@
         </div>
     </section>
 
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container newsletter-content">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get the latest urban farming tips and guides delivered to your inbox</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
     <!-- Main Content -->
     <main class="container">
         <!-- Home Page (Blog) -->
         <div class="page active" id="homePage">
             <h2 class="section-title">Latest Articles</h2>
             
-            <div class="posts-grid" id="postsGrid">
-                <!-- Article 1 -->
-                <article class="post-card">
-                    <img src="https://placehold.co/800x400/22c55e/ffffff?text=Vertical+Gardening" alt="Vertical Gardening" class="post-image">
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <span>Sarah Green</span>
-                            <span class="separator">•</span>
-                            <span>January 15, 2024</span>
-                        </div>
-                        <h2 class="post-title">Vertical Gardening: Maximizing Small Urban Spaces</h2>
-                        <p class="post-excerpt">Learn how to transform your limited urban space into a productive vertical garden with these practical techniques.</p>
-                        <div class="post-tags">
-                            <span class="tag">vertical gardening</span>
-                            <span class="tag">small spaces</span>
-                            <span class="tag">urban farming</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Article 2 -->
-                <article class="post-card">
-                    <img src="https://placehold.co/800x400/10b981/ffffff?text=Container+Gardening" alt="Container Gardening" class="post-image">
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <span>Mike Thompson</span>
-                            <span class="separator">•</span>
-                            <span>January 12, 2024</span>
-                        </div>
-                        <h2 class="post-title">Container Gardening 101: Perfect for Urban Dwellers</h2>
-                        <p class="post-excerpt">Start your urban farming journey with this comprehensive guide to container gardening for beginners.</p>
-                        <div class="post-tags">
-                            <span class="tag">container gardening</span>
-                            <span class="tag">beginners</span>
-                            <span class="tag">urban farming</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Article 3 -->
-                <article class="post-card">
-                    <img src="https://placehold.co/800x400/8b5cf6/ffffff?text=Apartment+Composting" alt="Apartment Composting" class="post-image">
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <span>Lisa Chen</span>
-                            <span class="separator">•</span>
-                            <span>January 10, 2024</span>
-                        </div>
-                        <h2 class="post-title">Composting in Apartments: No Yard Required</h2>
-                        <p class="post-excerpt">Discover how to turn kitchen scraps into nutrient-rich compost even in the smallest urban apartments.</p>
-                        <div class="post-tags">
-                            <span class="tag">composting</span>
-                            <span class="tag">apartments</span>
-                            <span class="tag">sustainability</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Article 4 -->
-                <article class="post-card">
-                    <img src="https://placehold.co/800x400/f59e0b/ffffff?text=Balcony+Garden" alt="Balcony Garden" class="post-image">
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <span>David Rodriguez</span>
-                            <span class="separator">•</span>
-                            <span>January 8, 2024</span>
-                        </div>
-                        <h2 class="post-title">Creating a Productive Balcony Vegetable Garden</h2>
-                        <p class="post-excerpt">Transform your balcony into a productive vegetable garden with these expert tips and techniques.</p>
-                        <div class="post-tags">
-                            <span class="tag">balcony garden</span>
-                            <span class="tag">vegetables</span>
-                            <span class="tag">urban farming</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Article 5 -->
-                <article class="post-card">
-                    <img src="https://placehold.co/800x400/ef4444/ffffff?text=Indoor+Herbs" alt="Indoor Herbs" class="post-image">
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <span>Emma Wilson</span>
-                            <span class="separator">•</span>
-                            <span>January 5, 2024</span>
-                        </div>
-                        <h2 class="post-title">Year-Round Indoor Herb Garden: Fresh Flavors at Your Fingertips</h2>
-                        <p class="post-excerpt">Keep fresh herbs growing in your kitchen all year with this comprehensive indoor gardening guide.</p>
-                        <div class="post-tags">
-                            <span class="tag">indoor gardening</span>
-                            <span class="tag">herbs</span>
-                            <span class="tag">year-round</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Article 6 -->
-                <article class="post-card">
-                    <img src="https://placehold.co/800x400/06b6d4/ffffff?text=Community+Garden" alt="Community Garden" class="post-image">
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <span>James Park</span>
-                            <span class="separator">•</span>
-                            <span>January 3, 2024</span>
-                        </div>
-                        <h2 class="post-title">The Surprising Benefits of Community Gardening</h2>
-                        <p class="post-excerpt">Discover the far-reaching social, psychological, and environmental benefits of community gardening initiatives.</p>
-                        <div class="post-tags">
-                            <span class="tag">community garden</span>
-                            <span class="tag">social benefits</span>
-                            <span class="tag">urban planning</span>
-                        </div>
-                    </div>
-                </article>
+            <!-- Loading State -->
+            <div id="loading" class="loading-container">
+                <div class="spinner"></div>
+                <p class="loading-text">Loading blog posts...</p>
             </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="error-state">
+                <svg class="error-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <h3 class="error-title">Error Loading Posts</h3>
+                <p class="error-message">We couldn't load the blog posts. Please try again later.</p>
+                <button id="retryBtn" class="retry-btn">Retry</button>
+            </div>
+
+            <!-- Blog Posts Grid -->
+            <div id="postsGrid" class="posts-grid hidden"></div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state hidden">
+                <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.467-.827-6.08-2.147M12 15v2m-6-2v2m12-2v2"></path>
+                </svg>
+                <h3 class="empty-title">No posts found</h3>
+                <p class="empty-message">Try adjusting your search or filter to find what you're looking for.</p>
+                <button id="clearSearch" class="clear-btn">Clear search</button>
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination" class="pagination hidden"></div>
         </div>
 
         <!-- About Page -->
         <div class="page" id="aboutPage">
-            <h2 class="section-title">About Bandar Urban Farm</h2>
+            <h2>About Bandar Urban Farm</h2>
             <div class="page-content">
                 <div class="page-section">
                     <h3>Our Mission</h3>
@@ -755,7 +1169,7 @@
 
         <!-- Contact Page -->
         <div class="page" id="contactPage">
-            <h2 class="section-title">Contact Us</h2>
+            <h2>Contact Us</h2>
             <div class="page-content">
                 <div class="page-section">
                     <h3>Get In Touch</h3>
@@ -803,9 +1217,62 @@
                     <p>Saturday: 10:00 AM - 3:00 PM</p>
                     <p>Sunday: Closed</p>
                 </div>
+                
+                <div class="page-section">
+                    <h3>Send Us a Message</h3>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" id="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Your Email</label>
+                            <input type="email" id="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" class="form-textarea" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Post Detail View -->
+        <div id="postDetail" class="post-detail hidden">
+            <button id="backBtn" class="back-btn">← Back to Bandar Urban Farm</button>
+            <h1 id="detailTitle" class="post-detail-title"></h1>
+            <div id="detailMeta" class="post-detail-meta"></div>
+            <div id="permalink" class="permalink">
+                <span class="permalink-icon">🔗</span>
+                <span id="permalinkUrl"></span>
+                <span id="copyPermalink" class="copy-permalink">Copy link</span>
+            </div>
+            <img id="detailImage" class="post-detail-image" src="" alt="">
+            <div id="detailContent" class="post-detail-content"></div>
+            
+            <div class="post-detail-tags">
+                <h3>Tags:</h3>
+                <div id="detailTags" class="post-tags"></div>
+            </div>
+
+            <div class="share-section">
+                <h3>Share this post</h3>
+                <div class="share-buttons">
+                    <button class="share-btn facebook-btn" id="facebookShare">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </button>
+                    <button class="share-btn whatsapp-btn" id="whatsappShare">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </button>
+                </div>
             </div>
         </div>
     </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Link copied to clipboard!</div>
 
     <!-- Footer -->
     <footer>
@@ -833,6 +1300,25 @@
 
     <script>
         // DOM Elements
+        const loadingElement = document.getElementById('loading');
+        const postsGridElement = document.getElementById('postsGrid');
+        const emptyStateElement = document.getElementById('emptyState');
+        const paginationElement = document.getElementById('pagination');
+        const searchInput = document.getElementById('searchInput');
+        const clearSearchBtn = document.getElementById('clearSearch');
+        const postDetailElement = document.getElementById('postDetail');
+        const backBtn = document.getElementById('backBtn');
+        const detailTitleElement = document.getElementById('detailTitle');
+        const detailMetaElement = document.getElementById('detailMeta');
+        const detailImageElement = document.getElementById('detailImage');
+        const detailContentElement = document.getElementById('detailContent');
+        const detailTagsElement = document.getElementById('detailTags');
+        const permalinkElement = document.getElementById('permalink');
+        const permalinkUrlElement = document.getElementById('permalinkUrl');
+        const copyPermalinkElement = document.getElementById('copyPermalink');
+        const toastElement = document.getElementById('toast');
+        const errorStateElement = document.getElementById('errorState');
+        const retryBtn = document.getElementById('retryBtn');
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
         const closeMenu = document.getElementById('closeMenu');
@@ -841,29 +1327,239 @@
         const aboutPage = document.getElementById('aboutPage');
         const contactPage = document.getElementById('contactPage');
         const navLinks = document.querySelectorAll('.nav-link');
-        const searchInput = document.getElementById('searchInput');
-        const postsGrid = document.getElementById('postsGrid');
-        const postCards = document.querySelectorAll('.post-card');
+        const facebookShare = document.getElementById('facebookShare');
+        const whatsappShare = document.getElementById('whatsappShare');
+        const newsletterForm = document.getElementById('newsletterForm');
+        const contactForm = document.getElementById('contactForm');
+
+        // State
+        let blogPosts = [];
+        let currentPage = 1;
+        const postsPerPage = 6;
+        let searchTerm = '';
+        let filteredPosts = [];
+        let currentPost = null;
+
+        // Sample blog data (replaces CSV)
+        const blogData = `id,title,author,date,image,excerpt,content,tags
+1,Getting Started with Container Gardening,Ali Rahman,2023-10-15,https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80,Learn how to grow your own food even in small spaces with container gardening.,Container gardening is perfect for urban dwellers with limited space. You can grow a variety of vegetables, herbs, and even small fruits in containers on balconies, patios, or windowsills. The key is choosing the right containers, soil, and plants for your specific conditions. Make sure your containers have drainage holes and use a high-quality potting mix. Most vegetables need at least 6 hours of sunlight daily, so position your containers accordingly. Water regularly as containers dry out faster than ground soil.,container gardening|urban farming|beginner
+2,The Benefits of Composting in Small Spaces,Siti Aisyah,2023-10-10,https://images.unsplash.com/photo-1542605828-9fc5abf84bff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80,Discover how to compost effectively even if you live in an apartment.,Composting is nature's way of recycling organic waste into nutrient-rich soil. Even in small urban spaces, you can compost effectively using methods like bokashi, worm farms, or small compost tumblers. These systems are odor-free and perfect for apartments. Composting reduces household waste, creates free fertilizer for your plants, and helps reduce methane emissions from landfills. Start with fruit and vegetable scraps, coffee grounds, and eggshells. Avoid meat, dairy, and oily foods in small-scale composting systems.,composting|sustainability|apartment living
+3,Vertical Gardening Solutions for Urban Homes,Budi Santoso,2023-10-05,https://images.unsplash.com/photo-1581993192008-63fd1ea7de1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80,Maximize your growing space with these vertical gardening ideas.,Vertical gardening is a game-changer for urban farmers with limited horizontal space. You can grow plants on walls, fences, trellises, or specially designed vertical planters. Many vegetables like tomatoes, cucumbers, and beans naturally grow vertically. Herbs, leafy greens, and strawberries also thrive in vertical systems. Consider factors like sunlight exposure, irrigation, and weight distribution when setting up your vertical garden. Drip irrigation systems work particularly well for vertical gardens.,vertical gardening|space saving|urban design
+4,Growing Herbs Indoors Year-Round,Dewi Anggraini,2023-09-28,https://images.unsplash.com/photo-1516211881347-84dcc0089d2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80,Enjoy fresh herbs no matter the season with these indoor gardening tips.,Growing herbs indoors allows you to have fresh flavors year-round. Most culinary herbs thrive indoors with proper care. Choose a sunny south-facing window or supplement with grow lights. Herbs like basil, parsley, mint, chives, and thyme adapt well to indoor conditions. Use well-draining pots with quality potting mix and water when the top inch of soil feels dry. Rotate pots regularly for even growth and harvest frequently to encourage bushier plants. Indoor herbs may need occasional fertilizing during active growth periods.,indoor gardening|herbs|cooking
+5,Choosing the Right Plants for Your Balcony Garden,Rudi Hermawan,2023-09-20,https://images.unsplash.com/photo-1590065480004-6e65adb44b68?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80,Select plants that will thrive in your specific balcony conditions.,When creating a balcony garden, consider your microclimate: sunlight exposure, wind conditions, and space limitations. South-facing balconies get the most sun, ideal for tomatoes, peppers, and herbs. East or west-facing balconies suit leafy greens and root vegetables. North-facing balconies with limited light can host shade-tolerant plants like mint, parsley, or leafy greens. Consider container size – deeper pots for root vegetables, wider ones for sprawling plants. Also think about weight restrictions if you have many containers.,balcony gardening|plant selection|microclimates
+6,Water-Saving Techniques for Urban Gardens,Maya Sari,2023-09-15,https://images.unsplash.com/photo-1591735179859-4a4fcaa94152?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80,Conserve water with these efficient irrigation methods for small spaces.,Water conservation is crucial for sustainable urban gardening. Implement techniques like drip irrigation, which delivers water directly to plant roots with minimal evaporation. Self-watering containers and wicking beds reduce watering frequency. Mulching with straw, wood chips, or other organic materials helps retain soil moisture. Collect rainwater in barrels if possible. Group plants with similar water needs together. Water early in the morning to reduce evaporation. Choose drought-tolerant varieties when possible.,water conservation|irrigation|sustainability`;
+
+        // Format date
+        function formatDate(dateString) {
+            if (!dateString) return 'Unknown date';
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString(undefined, options);
+        }
+
+        // Generate SEO-friendly URL with post title
+        function generatePermalink(post) {
+            const baseUrl = window.location.origin + window.location.pathname;
+            // Create a URL-friendly slug from the title
+            const titleSlug = post.title
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)/g, '');
+            return `${baseUrl}#post=${titleSlug}`;
+        }
+
+        // Update document title for SEO
+        function updateDocumentTitle(title) {
+            if (title) {
+                document.title = `${title} - Bandar Urban Farm`;
+            } else {
+                document.title = "Bandar Urban Farm - Transforming Urban Spaces into Thriving Gardens";
+            }
+        }
+
+        // Parse CSV to array of objects
+        function parseCSV(csv) {
+            const lines = csv.split('\n').filter(line => line.trim() !== '');
+            const headers = lines[0].split(',').map(h => h.trim());
+            
+            return lines.slice(1).map(line => {
+                const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                return headers.reduce((obj, header, i) => {
+                    let value = values[i] ? values[i].trim() : '';
+                    if (value.startsWith('"') && value.endsWith('"')) {
+                        value = value.slice(1, -1);
+                    }
+                    obj[header] = value;
+                    return obj;
+                }, {});
+            }).filter(post => post.id && post.title); // Filter out empty rows
+        }
+
+        // Load blog posts from CSV data
+        function loadBlogPosts() {
+            try {
+                blogPosts = parseCSV(blogData);
+                
+                // Process tags if they exist
+                blogPosts.forEach(post => {
+                    if (post.tags && typeof post.tags === 'string') {
+                        post.tags = post.tags.split('|').map(tag => tag.trim()).filter(tag => tag);
+                    } else {
+                        post.tags = [];
+                    }
+                });
+                
+                console.log('Loaded blog posts:', blogPosts);
+                
+                if (blogPosts.length === 0) {
+                    throw new Error('No valid posts found in CSV data');
+                }
+                
+                filteredPosts = [...blogPosts];
+                
+                // Hide loading, show posts
+                loadingElement.classList.add('hidden');
+                errorStateElement.classList.add('hidden');
+                postsGridElement.classList.remove('hidden');
+                renderPosts();
+                
+                // Check URL for direct post link
+                checkUrlForPost();
+                
+            } catch (error) {
+                console.error('Error loading blog posts:', error);
+                showErrorState();
+            }
+        }
+
+        // Show error state
+        function showErrorState() {
+            loadingElement.classList.add('hidden');
+            errorStateElement.classList.remove('hidden');
+        }
+
+        // Retry fetching data
+        function retryFetch() {
+            errorStateElement.classList.add('hidden');
+            loadingElement.classList.remove('hidden');
+            loadBlogPosts();
+        }
+
+        // Create post card
+        function createPostCard(post) {
+            const card = document.createElement('article');
+            card.className = 'post-card fade-in';
+            
+            // Ensure we have fallback values for all fields
+            const title = post.title || 'Untitled Post';
+            const author = post.author || 'Unknown Author';
+            const date = post.date ? formatDate(post.date) : 'Unknown Date';
+            const image = post.image || 'https://placehold.co/800x400/22c55e/ffffff?text=Bandar+Urban+Farm';
+            const excerpt = post.excerpt || (post.content ? post.content.substring(0, 150) + '...' : 'No excerpt available.');
+            const tags = post.tags && post.tags.length ? post.tags : ['No tags'];
+            
+            card.innerHTML = `
+                <img src="${image}" alt="${title}" class="post-image">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span>${author}</span>
+                        <span class="separator">•</span>
+                        <span>${date}</span>
+                    </div>
+                    <h2 class="post-title">${title}</h2>
+                    <p class="post-excerpt">${excerpt}</p>
+                    <div class="post-tags">
+                        ${tags.slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        ${tags.length > 3 ? `<span class="tag">+${tags.length - 3}</span>` : ''}
+                    </div>
+                </div>
+            `;
+            
+            card.addEventListener('click', () => showPostDetail(post));
+            return card;
+        }
+
+        // Show post detail
+        function showPostDetail(post) {
+            currentPost = post;
+            
+            // Update document title for SEO
+            updateDocumentTitle(post.title);
+            
+            // Update URL for SEO with post title
+            const titleSlug = post.title
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)/g, '');
+            window.history.pushState({ post: titleSlug }, post.title, `#post=${titleSlug}`);
+            
+            // Hide grid and show detail
+            homePage.classList.add('hidden');
+            aboutPage.classList.add('hidden');
+            contactPage.classList.add('hidden');
+            postDetailElement.classList.remove('hidden');
+            
+            // Populate detail view with fallback values
+            detailTitleElement.textContent = post.title || 'Untitled Post';
+            detailMetaElement.innerHTML = `
+                <span>By ${post.author || 'Unknown author'}</span>
+                <span>${post.date ? formatDate(post.date) : 'Unknown date'}</span>
+            `;
+            
+            // Set permalink
+            const permalinkUrl = generatePermalink(post);
+            permalinkUrlElement.textContent = permalinkUrl;
+            
+            detailImageElement.src = post.image || 'https://placehold.co/800x400/22c55e/ffffff?text=Bandar+Urban+Farm';
+            detailImageElement.alt = post.title || 'Blog post image';
+            
+            detailContentElement.textContent = post.content || 'No content available.';
+            
+            // Clear and populate tags
+            detailTagsElement.innerHTML = '';
+            const tags = post.tags && post.tags.length ? post.tags : ['No tags'];
+            tags.forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'tag';
+                tagElement.textContent = tag;
+                detailTagsElement.appendChild(tagElement);
+            });
+            
+            // Update share buttons
+            const shareUrl = encodeURIComponent(permalinkUrl);
+            const shareText = encodeURIComponent(post.title);
+            
+            facebookShare.onclick = () => {
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`, '_blank');
+            };
+            
+            whatsappShare.onclick = () => {
+                window.open(`https://wa.me/?text=${shareText}%20${shareUrl}`, '_blank');
+            };
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
 
         // Show page content
         function showPage(pageId) {
-            // Hide all pages
-            homePage.classList.remove('active');
-            aboutPage.classList.remove('active');
-            contactPage.classList.remove('active');
+            // Hide all pages and post detail
+            homePage.classList.add('hidden');
+            aboutPage.classList.add('hidden');
+            contactPage.classList.add('hidden');
+            postDetailElement.classList.add('hidden');
             
             // Show selected page
             if (pageId === 'home') {
-                homePage.classList.add('active');
-                document.title = "Bandar Urban Farm - Transforming Urban Spaces into Thriving Gardens";
+                homePage.classList.remove('hidden');
+                updateDocumentTitle(null);
                 window.history.pushState({ page: 'home' }, 'Bandar Urban Farm', window.location.pathname);
             } else if (pageId === 'about') {
-                aboutPage.classList.add('active');
-                document.title = "About Us - Bandar Urban Farm";
+                aboutPage.classList.remove('hidden');
+                updateDocumentTitle('About Us');
                 window.history.pushState({ page: 'about' }, 'About - Bandar Urban Farm', window.location.pathname + '#about');
             } else if (pageId === 'contact') {
-                contactPage.classList.add('active');
-                document.title = "Contact Us - Bandar Urban Farm";
+                contactPage.classList.remove('hidden');
+                updateDocumentTitle('Contact Us');
                 window.history.pushState({ page: 'contact' }, 'Contact - Bandar Urban Farm', window.location.pathname + '#contact');
             }
             
@@ -880,21 +1576,186 @@
             window.scrollTo(0, 0);
         }
 
-        // Filter posts based on search input
-        function filterPosts() {
-            const searchTerm = searchInput.value.toLowerCase();
+        // Show posts grid
+        function showPostsGrid() {
+            showPage('home');
+            currentPost = null;
+        }
+
+        // Render posts
+        function renderPosts() {
+            console.log('Rendering posts, current page:', currentPage);
             
-            postCards.forEach(card => {
-                const title = card.querySelector('.post-title').textContent.toLowerCase();
-                const excerpt = card.querySelector('.post-excerpt').textContent.toLowerCase();
-                const tags = card.querySelector('.post-tags').textContent.toLowerCase();
+            // Clear grid
+            postsGridElement.innerHTML = '';
+            
+            // Calculate pagination
+            const indexOfLastPost = currentPage * postsPerPage;
+            const indexOfFirstPost = indexOfLastPost - postsPerPage;
+            const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+            
+            console.log('Current posts to display:', currentPosts.length);
+            
+            // Render posts
+            if (currentPosts.length === 0) {
+                emptyStateElement.classList.remove('hidden');
+                postsGridElement.classList.add('hidden');
+                paginationElement.classList.add('hidden');
+            } else {
+                emptyStateElement.classList.add('hidden');
+                postsGridElement.classList.remove('hidden');
                 
-                if (title.includes(searchTerm) || excerpt.includes(searchTerm) || tags.includes(searchTerm)) {
-                    card.style.display = 'flex';
+                currentPosts.forEach(post => {
+                    const postCard = createPostCard(post);
+                    postsGridElement.appendChild(postCard);
+                });
+                
+                // Show pagination if needed
+                if (filteredPosts.length > postsPerPage) {
+                    paginationElement.classList.remove('hidden');
                 } else {
-                    card.style.display = 'none';
+                    paginationElement.classList.add('hidden');
+                }
+            }
+            
+            // Render pagination
+            renderPagination();
+        }
+
+        // Render pagination
+        function renderPagination() {
+            paginationElement.innerHTML = '';
+            
+            const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+            
+            if (totalPages <= 1) {
+                paginationElement.classList.add('hidden');
+                return;
+            }
+            
+            paginationElement.classList.remove('hidden');
+            
+            // Previous button
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'pagination-btn';
+            prevBtn.innerHTML = 'Previous';
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderPosts();
+                    window.scrollTo(0, 0);
                 }
             });
+            paginationElement.appendChild(prevBtn);
+            
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+                pageBtn.textContent = i;
+                pageBtn.addEventListener('click', () => {
+                    currentPage = i;
+                    renderPosts();
+                    window.scrollTo(0, 0);
+                });
+                paginationElement.appendChild(pageBtn);
+            }
+            
+            // Next button
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'pagination-btn';
+            nextBtn.innerHTML = 'Next';
+            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderPosts();
+                    window.scrollTo(0, 0);
+                }
+            });
+            paginationElement.appendChild(nextBtn);
+        }
+
+        // Filter posts
+        function filterPosts() {
+            searchTerm = searchInput.value.toLowerCase();
+            filteredPosts = blogPosts.filter(post =>
+                (post.title && post.title.toLowerCase().includes(searchTerm)) ||
+                (post.content && post.content.toLowerCase().includes(searchTerm)) ||
+                (post.tags && post.tags.some(tag => tag.toLowerCase().includes(searchTerm))) ||
+                (post.author && post.author.toLowerCase().includes(searchTerm)) ||
+                (post.excerpt && post.excerpt.toLowerCase().includes(searchTerm))
+            );
+            
+            currentPage = 1;
+            
+            // Show appropriate view
+            renderPosts();
+        }
+
+        // Copy permalink to clipboard
+        function copyToClipboard(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    // Show toast notification
+                    toastElement.classList.add('show');
+                    setTimeout(() => {
+                        toastElement.classList.remove('show');
+                    }, 3000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+            } else {
+                // Fallback for browsers that don't support clipboard API
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.opacity = '0';
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    toastElement.classList.add('show');
+                    setTimeout(() => {
+                        toastElement.classList.remove('show');
+                    }, 3000);
+                } catch (err) {
+                    console.error('Fallback: Failed to copy', err);
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+        // Check URL for post on load
+        function checkUrlForPost() {
+            const hash = window.location.hash;
+            
+            if (hash.includes('post=')) {
+                const postSlug = hash.split('=')[1];
+                // Find post by converting title to slug format
+                const post = blogPosts.find(p => {
+                    const titleSlug = p.title
+                        .toLowerCase()
+                        .replace(/[^a-z0-9]+/g, '-')
+                        .replace(/(^-|-$)/g, '');
+                    return titleSlug === postSlug;
+                });
+                
+                if (post) {
+                    showPostDetail(post);
+                    return;
+                }
+            } else if (hash === '#about') {
+                showPage('about');
+                return;
+            } else if (hash === '#contact') {
+                showPage('contact');
+                return;
+            }
+            
+            // Default to home page
+            showPage('home');
         }
 
         // Toggle navigation menu
@@ -911,34 +1772,38 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Check URL for page on load
-        function checkUrlForPage() {
-            const hash = window.location.hash;
-            
-            if (hash === '#about') {
-                showPage('about');
-                return;
-            } else if (hash === '#contact') {
-                showPage('contact');
-                return;
-            }
-            
-            // Default to home page
-            showPage('home');
+        // Handle form submissions
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for your submission! In a real application, this would be sent to a server.');
+            e.target.reset();
         }
 
         // Initialize
         function init() {
-            console.log('Initializing Bandar Urban Farm...');
+            console.log('Initializing Bandar Urban Farm blog...');
             
-            // Check URL for page on load
-            checkUrlForPage();
+            // Load blog posts from CSV data
+            loadBlogPosts();
             
             // Event listeners
+            searchInput.addEventListener('input', filterPosts);
+            clearSearchBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                filterPosts();
+            });
+            backBtn.addEventListener('click', showPostsGrid);
+            copyPermalinkElement.addEventListener('click', () => {
+                if (currentPost) {
+                    copyToClipboard(generatePermalink(currentPost));
+                }
+            });
+            retryBtn.addEventListener('click', retryFetch);
             menuToggle.addEventListener('click', toggleMenu);
             closeMenu.addEventListener('click', toggleMenu);
             overlay.addEventListener('click', closeAll);
-            searchInput.addEventListener('input', filterPosts);
+            newsletterForm.addEventListener('submit', handleFormSubmit);
+            contactForm.addEventListener('submit', handleFormSubmit);
             
             // Navigation links
             navLinks.forEach(link => {
@@ -952,7 +1817,7 @@
             
             // Handle browser back/forward buttons
             window.addEventListener('popstate', (e) => {
-                checkUrlForPage();
+                checkUrlForPost();
             });
         }
 

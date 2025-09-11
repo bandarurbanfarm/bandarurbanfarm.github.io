@@ -31,26 +31,22 @@
             --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             --header-height: 80px;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
         /* Header Styles */
         header {
             background-color: white;
@@ -62,59 +58,49 @@
             z-index: 100;
             height: var(--header-height);
         }
-
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             height: 100%;
         }
-
         .logo {
             display: flex;
             flex-direction: column;
         }
-
         .logo h1 {
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary-color);
         }
-
         .logo p {
             color: var(--light-text);
             font-size: 0.8rem;
         }
-
         /* Navigation */
         .desktop-nav {
             display: flex;
         }
-        
         .desktop-nav ul {
             display: flex;
             list-style: none;
             gap: 25px;
             margin-right: 20px;
         }
-        
         .desktop-nav a {
-            color: var (--text-color);
+            color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
             padding: 5px 0;
             position: relative;
         }
-        
         .desktop-nav a:hover {
             color: var(--primary-color);
         }
-        
         .desktop-nav a.active {
             color: var(--primary-color);
         }
-        
         .desktop-nav a.active::after {
             content: '';
             position: absolute;
@@ -124,19 +110,16 @@
             height: 2px;
             background-color: var(--primary-color);
         }
-
         /* Search */
         .header-actions {
             display: flex;
             align-items: center;
             gap: 15px;
         }
-
         .search-container {
             position: relative;
             width: 250px;
         }
-
         .search-input {
             width: 100%;
             padding: 10px 12px 10px 40px;
@@ -145,13 +128,11 @@
             font-size: 0.9rem;
             transition: all 0.3s ease;
         }
-
         .search-input:focus {
             outline: none;
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
         }
-
         .search-icon {
             position: absolute;
             left: 12px;
@@ -159,7 +140,6 @@
             transform: translateY(-50%);
             color: var(--light-text);
         }
-
         .menu-toggle {
             background: none;
             border: none;
@@ -169,7 +149,6 @@
             padding: 5px 10px;
             display: none;
         }
-
         /* Mobile Navigation */
         .nav-menu {
             position: fixed;
@@ -183,26 +162,21 @@
             z-index: 1000;
             padding: 20px;
         }
-        
         .nav-menu.active {
             right: 0;
         }
-        
         .nav-menu h3 {
             color: var(--primary-color);
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 1px solid var(--light);
         }
-        
         .nav-menu ul {
             list-style: none;
         }
-        
         .nav-menu li {
             margin-bottom: 15px;
         }
-        
         .nav-menu a {
             color: var(--text-color);
             text-decoration: none;
@@ -212,11 +186,9 @@
             align-items: center;
             gap: 10px;
         }
-        
         .nav-menu a:hover {
             color: var(--primary-color);
         }
-        
         .close-menu {
             position: absolute;
             top: 15px;
@@ -224,7 +196,6 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
-
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
@@ -235,7 +206,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .hero::before {
             content: '';
             position: absolute;
@@ -246,7 +216,6 @@
             background: linear-gradient(135deg, rgba(34, 197, 94, 0.7) 0%, rgba(16, 185, 129, 0.7) 100%);
             z-index: -1;
         }
-
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
@@ -254,7 +223,6 @@
             z-index: 1;
             animation: fadeInUp 1s ease-out;
         }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -265,19 +233,16 @@
                 transform: translateY(0);
             }
         }
-
         .hero h2 {
             font-size: 2.8rem;
             margin-bottom: 20px;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
-
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 30px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
-
         .cta-button {
             background-color: var(--accent-color);
             color: white;
@@ -290,13 +255,11 @@
             transition: all 0.3s;
             box-shadow: 0 4px 6px rgba(245, 158, 11, 0.3);
         }
-
         .cta-button:hover {
             background-color: #e69008;
             transform: translateY(-2px);
             box-shadow: 0 6px 10px rgba(245, 158, 11, 0.4);
         }
-
         /* Newsletter Section */
         .newsletter {
             background-color: var(--primary-color);
@@ -304,29 +267,24 @@
             padding: 50px 0;
             text-align: center;
         }
-
         .newsletter-content {
             max-width: 600px;
             margin: 0 auto;
         }
-
         .newsletter h2 {
             font-size: 2rem;
             margin-bottom: 15px;
         }
-
         .newsletter p {
             margin-bottom: 25px;
             font-size: 1.1rem;
         }
-
         .newsletter-form {
             display: flex;
             gap: 10px;
             max-width: 500px;
             margin: 0 auto;
         }
-
         .newsletter-input {
             flex: 1;
             padding: 12px 15px;
@@ -334,7 +292,6 @@
             border-radius: 6px;
             font-size: 1rem;
         }
-
         .newsletter-button {
             background-color: var(--accent-color);
             color: white;
@@ -345,23 +302,19 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-
         .newsletter-button:hover {
             background-color: #e69008;
         }
-
         /* Main Content Styles */
         main {
             padding: 40px 0;
         }
-
         .section-title {
             font-size: 1.8rem;
             margin-bottom: 30px;
             position: relative;
             padding-bottom: 10px;
         }
-
         .section-title::after {
             content: '';
             position: absolute;
@@ -371,25 +324,21 @@
             height: 3px;
             background-color: var(--primary-color);
         }
-
         .posts-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 32px;
         }
-
         @media (min-width: 768px) {
             .posts-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-
         @media (min-width: 1024px) {
             .posts-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-
         .post-card {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -401,26 +350,22 @@
             display: flex;
             flex-direction: column;
         }
-
         .post-card:hover {
             box-shadow: var(--hover-shadow);
             transform: translateY(-5px);
         }
-
         .post-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
             display: block;
         }
-
         .post-content {
             padding: 24px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
-
         .post-meta {
             display: flex;
             align-items: center;
@@ -430,15 +375,12 @@
             flex-wrap: wrap;
             gap: 8px;
         }
-
         .post-meta span:not(:last-child) {
             margin-right: 8px;
         }
-
         .post-meta .separator {
             color: var(--light-text);
         }
-
         .post-title {
             font-size: 1.25rem;
             font-weight: 600;
@@ -451,11 +393,9 @@
             overflow: hidden;
             flex-grow: 1;
         }
-
         .post-title:hover {
             color: var(--primary-color);
         }
-
         .post-excerpt {
             color: var(--light-text);
             margin-bottom: 20px;
@@ -465,14 +405,12 @@
             overflow: hidden;
             font-size: 0.95rem;
         }
-
         .post-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             margin-top: auto;
         }
-
         .tag {
             background-color: #f3f4f6;
             color: #4b5563;
@@ -481,7 +419,6 @@
             font-size: 0.75rem;
             font-weight: 500;
         }
-
         /* Pagination */
         .pagination {
             display: flex;
@@ -490,7 +427,6 @@
             gap: 8px;
             margin-top: 40px;
         }
-
         .pagination-btn {
             padding: 8px 16px;
             border: 1px solid var(--border-color);
@@ -500,43 +436,36 @@
             font-size: 0.9rem;
             transition: all 0.2s ease;
         }
-
         .pagination-btn:hover:not(:disabled) {
             background-color: #f3f4f6;
         }
-
         .pagination-btn.active {
             background-color: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
         }
-
         .pagination-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
-
         /* Empty State */
         .empty-state {
             text-align: center;
             padding: 60px 20px;
             grid-column: 1 / -1;
         }
-
         .empty-icon {
             width: 48px;
             height: 48px;
             margin: 0 auto 24px;
             color: #9ca3af;
         }
-
         .empty-title {
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 8px;
             color: var(--text-color);
         }
-
         .empty-message {
             color: var(--light-text);
             margin-bottom: 24px;
@@ -544,7 +473,6 @@
             margin-left: auto;
             margin-right: auto;
         }
-
         .clear-btn {
             padding: 10px 20px;
             background-color: var(--primary-color);
@@ -555,18 +483,15 @@
             font-weight: 500;
             transition: background-color 0.2s ease;
         }
-
         .clear-btn:hover {
             background-color: #16a34a;
         }
-
         /* Post Detail View */
         .post-detail {
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
         }
-
         .back-btn {
             display: inline-flex;
             align-items: center;
@@ -579,18 +504,15 @@
             border: none;
             font-size: 1rem;
         }
-
         .back-btn:hover {
             color: #16a34a;
         }
-
         .post-detail-title {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 16px;
             line-height: 1.3;
         }
-
         .post-detail-meta {
             display: flex;
             flex-wrap: wrap;
@@ -600,7 +522,6 @@
             margin-bottom: 16px;
             gap: 16px;
         }
-
         .permalink {
             display: flex;
             align-items: center;
@@ -612,21 +533,17 @@
             border-radius: 6px;
             border: 1px solid #bbf7d0;
         }
-
         .permalink-icon {
             margin-right: 8px;
         }
-
         .copy-permalink {
             margin-left: 8px;
             cursor: pointer;
             color: var(--secondary-color);
         }
-
         .copy-permalink:hover {
             text-decoration: underline;
         }
-
         .post-detail-image {
             width: 100%;
             height: 400px;
@@ -634,43 +551,36 @@
             border-radius: 12px;
             margin-bottom: 32px;
         }
-
         .post-detail-content {
             font-size: 1.1rem;
             line-height: 1.8;
             margin-bottom: 40px;
             color: var(--text-color);
         }
-
         .post-detail-tags {
             border-top: 1px solid var(--border-color);
             padding-top: 24px;
             margin-bottom: 40px;
         }
-
         .post-detail-tags h3 {
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 16px;
         }
-
         .share-section {
             border-top: 1px solid var(--border-color);
             padding-top: 32px;
             margin-top: 24px;
         }
-
         .share-section h3 {
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 20px;
         }
-
         .share-buttons {
             display: flex;
             gap: 12px;
         }
-
         .share-btn {
             padding: 12px 24px;
             border: none;
@@ -683,19 +593,15 @@
             align-items: center;
             gap: 8px;
         }
-
         .share-btn:hover {
             opacity: 0.9;
         }
-
         .facebook-btn {
             background-color: #1877f2;
         }
-
         .whatsapp-btn {
             background-color: #25D366;
         }
-
         /* About and Contact Pages */
         .page {
             display: none;
@@ -703,46 +609,38 @@
             margin: 0 auto;
             padding: 40px 20px;
         }
-
         .page.active {
             display: block;
         }
-
         .page h2 {
             font-size: 2rem;
             margin-bottom: 20px;
             color: var(--primary-color);
         }
-
         .page-content {
             background: white;
             padding: 30px;
             border-radius: 12px;
             box-shadow: var(--shadow);
         }
-
         .page-section {
             margin-bottom: 30px;
         }
-
         .page-section h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
             color: var(--secondary-color);
         }
-
         .contact-info {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-
         .contact-item {
             display: flex;
             align-items: center;
             gap: 15px;
         }
-
         .contact-icon {
             width: 40px;
             height: 40px;
@@ -754,22 +652,18 @@
             justify-content: center;
             font-size: 1.2rem;
         }
-
         /* Contact Form */
         .contact-form {
             margin-top: 30px;
         }
-
         .form-group {
             margin-bottom: 20px;
         }
-
         .form-label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
         }
-
         .form-input, .form-textarea {
             width: 100%;
             padding: 12px;
@@ -778,18 +672,15 @@
             font-size: 1rem;
             transition: border-color 0.3s;
         }
-
         .form-input:focus, .form-textarea:focus {
             outline: none;
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
         }
-
         .form-textarea {
             min-height: 150px;
             resize: vertical;
         }
-
         .submit-btn {
             background-color: var(--primary-color);
             color: white;
@@ -801,11 +692,9 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-
         .submit-btn:hover {
             background-color: var(--secondary-color);
         }
-
         /* Footer */
         footer {
             background-color: white;
@@ -813,28 +702,19 @@
             padding: 60px 0 30px;
             margin-top: 80px;
         }
-
         .footer-content {
-            text-align: center;
-            margin-bottom: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items:
-                .footer-content {
             text-align: center;
             margin-bottom: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
         .footer-logo {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 8px;
             color: var(--primary-color);
         }
-
         .footer-description {
             color: var(--light-text);
             margin-bottom: 24px;
@@ -842,24 +722,20 @@
             margin-left: auto;
             margin-right: auto;
         }
-
         .social-links {
             display: flex;
             justify-content: center;
             gap: 24px;
             margin-bottom: 40px;
         }
-
         .social-link {
             color: #9ca3af;
             font-size: 1.5rem;
             transition: color 0.2s ease;
         }
-
         .social-link:hover {
             color: var(--text-color);
         }
-
         .copyright {
             text-align: center;
             color: var(--light-text);
@@ -868,7 +744,6 @@
             border-top: 1px solid var(--border-color);
             width: 100%;
         }
-
         /* Loading Spinner */
         .loading-container {
             display: flex;
@@ -878,7 +753,6 @@
             min-height: 300px;
             grid-column: 1 / -1;
         }
-
         .spinner {
             width: 48px;
             height: 48px;
@@ -888,36 +762,31 @@
             animation: spin 1s linear infinite;
             margin-bottom: 16px;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
         .loading-text {
             color: var(--light-text);
         }
-
         /* Toast Notification */
         .toast {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #16a34a;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #16a34a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
         .toast.show {
             opacity: 1;
         }
-
         /* Error State */
         .error-state {
             text-align: center;
@@ -926,20 +795,17 @@
             grid-column: 1 / -1;
             display: none;
         }
-
         .error-icon {
             width: 48px;
             height: 48px;
             margin: 0 auto 24px;
             color: #ef4444;
         }
-
         .error-title {
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 8px;
         }
-
         .error-message {
             color: #ef4444;
             margin-bottom: 24px;
@@ -947,7 +813,6 @@
             margin-left: auto;
             margin-right: auto;
         }
-
         .retry-btn {
             padding: 10px 20px;
             background-color: #ef4444;
@@ -958,11 +823,9 @@
             font-weight: 500;
             transition: background-color 0.2s ease;
         }
-
         .retry-btn:hover {
             background-color: #dc2626;
         }
-
         /* Overlay */
         .overlay {
             position: fixed;
@@ -974,71 +837,55 @@
             z-index: 999;
             display: none;
         }
-        
         .overlay.active {
             display: block;
         }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             :root {
                 --header-height: 70px;
             }
-            
             .header-container {
                 padding: 0 15px;
             }
-            
             .desktop-nav {
                 display: none;
             }
-            
             .menu-toggle {
                 display: block;
             }
-            
             .search-container {
                 width: 180px;
             }
-            
             .hero {
                 padding: 60px 0;
             }
-            
             .hero h2 {
                 font-size: 2rem;
             }
-            
             .hero p {
                 font-size: 1rem;
             }
-            
             .newsletter-form {
                 flex-direction: column;
             }
-            
             .post-detail-image {
                 height: 300px;
             }
-            
             .post-detail-title {
                 font-size: 1.5rem;
             }
-            
             .share-buttons {
                 flex-direction: column;
             }
         }
-
         /* Utility Classes */
         .hidden {
             display: none !important;
         }
-
         .fade-in {
             animation: fadeIn 0.5s ease-in;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -1053,7 +900,6 @@
                 <h1>Bandar Urban Farm</h1>
                 <p>Transforming urban spaces into thriving gardens</p>
             </div>
-            
             <!-- Desktop Navigation -->
             <nav class="desktop-nav">
                 <ul>
@@ -1062,20 +908,17 @@
                     <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
                 </ul>
             </nav>
-            
             <div class="header-actions">
                 <div class="search-container">
                     <span class="search-icon">🔍</span>
                     <input type="text" class="search-input" id="searchInput" placeholder="Search posts...">
                 </div>
-                
                 <button class="menu-toggle" id="menuToggle">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
     </header>
-    
     <!-- Mobile Navigation Menu -->
     <div class="nav-menu" id="navMenu">
         <span class="close-menu" id="closeMenu">&times;</span>
@@ -1086,10 +929,8 @@
             <li><a href="#" class="nav-link" data-page="contact"><i class="fas fa-phone-alt"></i> Contact</a></li>
         </ul>
     </div>
-
     <!-- Overlay -->
     <div class="overlay" id="overlay"></div>
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-content">
@@ -1098,7 +939,6 @@
             <a href="https://wa.me/6285773009666" target="_blank" class="cta-button">Explore Our Guides</a>
         </div>
     </section>
-
     <!-- Newsletter Section -->
     <section class="newsletter">
         <div class="container newsletter-content">
@@ -1110,19 +950,16 @@
             </form>
         </div>
     </section>
-
     <!-- Main Content -->
     <main class="container">
         <!-- Home Page (Blog) -->
         <div class="page active" id="homePage">
             <h2 class="section-title">Latest Articles</h2>
-            
             <!-- Loading State -->
             <div id="loading" class="loading-container">
                 <div class="spinner"></div>
                 <p class="loading-text">Loading blog posts...</p>
             </div>
-
             <!-- Error State -->
             <div id="errorState" class="error-state">
                 <svg class="error-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1132,10 +969,8 @@
                 <p class="error-message">We couldn't load the blog posts. Please try again later.</p>
                 <button id="retryBtn" class="retry-btn">Retry</button>
             </div>
-
             <!-- Blog Posts Grid -->
             <div id="postsGrid" class="posts-grid hidden"></div>
-
             <!-- Empty State -->
             <div id="emptyState" class="empty-state hidden">
                 <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1145,11 +980,9 @@
                 <p class="empty-message">Try adjusting your search or filter to find what you're looking for.</p>
                 <button id="clearSearch" class="clear-btn">Clear search</button>
             </div>
-
             <!-- Pagination -->
             <div id="pagination" class="pagination hidden"></div>
         </div>
-
         <!-- About Page -->
         <div class="page" id="aboutPage">
             <h2>About Bandar Urban Farm</h2>
@@ -1158,13 +991,11 @@
                     <h3>Our Mission</h3>
                     <p>Bandar Urban Farm is dedicated to transforming urban spaces into thriving, productive gardens. We believe that everyone, regardless of their living situation, should have access to fresh, homegrown produce and the joy of gardening.</p>
                 </div>
-                
                 <div class="page-section">
                     <h3>What We Do</h3>
                     <p>We provide practical guides, resources, and inspiration for urban dwellers who want to grow their own food. From small balcony gardens to rooftop farms, we help you make the most of your available space.</p>
                     <p>Our expertise covers vertical gardening, container gardening, composting, indoor herb gardens, and much more. We're passionate about sustainable living and helping city residents connect with their food sources.</p>
                 </div>
-                
                 <div class="page-section">
                     <h3>Our Story</h3>
                     <p>Founded in 2020, Bandar Urban Farm began as a small community initiative to help urban residents grow their own food during challenging times. What started as a neighborhood project has grown into a comprehensive resource for urban farmers across the region.</p>
@@ -1172,7 +1003,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Contact Page -->
         <div class="page" id="contactPage">
             <h2>Contact Us</h2>
@@ -1181,7 +1011,6 @@
                     <h3>Get In Touch</h3>
                     <p>Have questions about urban farming? Want to share your success story? We'd love to hear from you!</p>
                 </div>
-                
                 <div class="page-section">
                     <h3>Contact Information</h3>
                     <div class="contact-info">
@@ -1194,7 +1023,6 @@
                                 <p><a href="https://wa.me/6285773009666">+62 857-7300-9666</a></p>
                             </div>
                         </div>
-                        
                         <div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-envelope"></i>
@@ -1204,8 +1032,7 @@
                                 <p><a href="mailto:info@bandarurbanfarm.com">info@bandarurbanfarm.com</a></p>
                             </div>
                         </div>
-                        
-                                                <div class="contact-item">
+                        <div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
@@ -1216,14 +1043,12 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="page-section">
                     <h3>Operating Hours</h3>
                     <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
                     <p>Saturday: 10:00 AM - 3:00 PM</p>
                     <p>Sunday: Closed</p>
                 </div>
-                
                 <div class="page-section">
                     <h3>Send Us a Message</h3>
                     <form class="contact-form" id="contactForm">
@@ -1244,7 +1069,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Post Detail View -->
         <div id="postDetail" class="post-detail hidden">
             <button id="backBtn" class="back-btn">← Back to Bandar Urban Farm</button>
@@ -1257,12 +1081,10 @@
             </div>
             <img id="detailImage" class="post-detail-image" src="" alt="">
             <div id="detailContent" class="post-detail-content"></div>
-            
             <div class="post-detail-tags">
                 <h3>Tags:</h3>
                 <div id="detailTags" class="post-tags"></div>
             </div>
-
             <div class="share-section">
                 <h3>Share this post</h3>
                 <div class="share-buttons">
@@ -1276,10 +1098,8 @@
             </div>
         </div>
     </main>
-
     <!-- Toast Notification -->
     <div id="toast" class="toast">Link copied to clipboard!</div>
-
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1299,11 +1119,10 @@
                 </div>
             </div>
             <div class="copyright">
-                &copy; 2025 Bandar Urban Farm. All rights reserved.
+                &copy; <span id="year">2024</span> Bandar Urban Farm. All rights reserved.
             </div>
         </div>
     </footer>
-
     <script>
         // DOM Elements
         const loadingElement = document.getElementById('loading');
@@ -1337,7 +1156,11 @@
         const whatsappShare = document.getElementById('whatsappShare');
         const newsletterForm = document.getElementById('newsletterForm');
         const contactForm = document.getElementById('contactForm');
-
+        const yearElement = document.getElementById('year');
+        
+        // Set current year
+        yearElement.textContent = new Date().getFullYear();
+        
         // State
         let blogPosts = [];
         let currentPage = 1;
@@ -1345,14 +1168,14 @@
         let searchTerm = '';
         let filteredPosts = [];
         let currentPost = null;
-
+        
         // Format date
         function formatDate(dateString) {
             if (!dateString) return 'Unknown date';
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             return new Date(dateString).toLocaleDateString(undefined, options);
         }
-
+        
         // Generate SEO-friendly URL with post title
         function generatePermalink(post) {
             const baseUrl = window.location.origin + window.location.pathname;
@@ -1363,7 +1186,7 @@
                 .replace(/(^-|-$)/g, '');
             return `${baseUrl}#post=${titleSlug}`;
         }
-
+        
         // Update document title for SEO
         function updateDocumentTitle(title) {
             if (title) {
@@ -1372,32 +1195,29 @@
                 document.title = "Bandar Urban Farm - Transforming Urban Spaces into Thriving Gardens";
             }
         }
-
-        // Parse CSV to array of objects
-       function parseCSV(csv) {
-    // Split by either 
- or 
- to handle different line endings
-    const lines = csv.split(/\r?
-/).filter(line => line.trim() !== '');
-    const headers = lines[0].split(',').map(h => h.trim());
-    return lines.slice(1).map(line => {
-        const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-        return headers.reduce((obj, header, i) => {
-            let value = values[i] ? values[i].trim() : '';
-            // Handle quoted values
-            if (value.startsWith('"') && value.endsWith('"')) {
-                value = value.slice(1, -1).replace(/""/g, '"'); // Handle escaped quotes
-            }
-            obj[header] = value;
-            return obj;
-        }, {});
-    }).filter(post => post.id && post.title); // Filter out empty rows
-}
+        
+        // Parse CSV to array of objects (improved version)
+        function parseCSV(csv) {
+            // Split by either \r\n or \n to handle different line endings
+            const lines = csv.split(/\r?\n/).filter(line => line.trim() !== '');
+            const headers = lines[0].split(',').map(h => h.trim());
+            return lines.slice(1).map(line => {
+                const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                return headers.reduce((obj, header, i) => {
+                    let value = values[i] ? values[i].trim() : '';
+                    // Handle quoted values
+                    if (value.startsWith('"') && value.endsWith('"')) {
+                        value = value.slice(1, -1).replace(/""/g, '"'); // Handle escaped quotes
+                    }
+                    obj[header] = value;
+                    return obj;
+                }, {});
+            }).filter(post => post.id && post.title); // Filter out empty rows
+        }
+        
         // Load blog posts from external CSV
         function loadBlogPosts() {
             const csvUrl = "https://bandarurbanfarm.github.io/blogposts.csv";
-            
             fetch(csvUrl)
                 .then(response => {
                     if (!response.ok) {
@@ -1407,7 +1227,6 @@
                 })
                 .then(csvText => {
                     blogPosts = parseCSV(csvText);
-                    
                     // Process tags if they exist
                     blogPosts.forEach(post => {
                         if (post.tags && typeof post.tags === 'string') {
@@ -1416,49 +1235,42 @@
                             post.tags = [];
                         }
                     });
-                    
                     console.log('Loaded blog posts:', blogPosts);
-                    
                     if (blogPosts.length === 0) {
                         throw new Error('No valid posts found in CSV data');
                     }
-                    
                     filteredPosts = [...blogPosts];
-                    
                     // Hide loading, show posts
                     loadingElement.classList.add('hidden');
                     errorStateElement.classList.add('hidden');
                     postsGridElement.classList.remove('hidden');
                     renderPosts();
-                    
                     // Check URL for direct post link
                     checkUrlForPost();
-                    
                 })
                 .catch(error => {
                     console.error('Error loading external CSV:', error);
                     showErrorState();
                 });
         }
-
+        
         // Show error state
         function showErrorState() {
             loadingElement.classList.add('hidden');
             errorStateElement.classList.remove('hidden');
         }
-
+        
         // Retry fetching data
         function retryFetch() {
             errorStateElement.classList.add('hidden');
             loadingElement.classList.remove('hidden');
             loadBlogPosts();
         }
-
+        
         // Create post card
         function createPostCard(post) {
             const card = document.createElement('article');
             card.className = 'post-card fade-in';
-            
             // Ensure we have fallback values for all fields
             const title = post.title || 'Untitled Post';
             const author = post.author || 'Unknown Author';
@@ -1466,7 +1278,6 @@
             const image = post.image || 'https://placehold.co/800x400/22c55e/ffffff?text=Bandar+Urban+Farm';
             const excerpt = post.excerpt || (post.content ? post.content.substring(0, 150) + '...' : 'No excerpt available.');
             const tags = post.tags && post.tags.length ? post.tags : ['No tags'];
-            
             card.innerHTML = `
                 <img src="${image}" alt="${title}" class="post-image">
                 <div class="post-content">
@@ -1483,48 +1294,39 @@
                     </div>
                 </div>
             `;
-            
             card.addEventListener('click', () => showPostDetail(post));
             return card;
         }
-
+        
         // Show post detail
         function showPostDetail(post) {
             currentPost = post;
-            
             // Update document title for SEO
             updateDocumentTitle(post.title);
-            
             // Update URL for SEO with post title
             const titleSlug = post.title
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/g, '-')
                 .replace(/(^-|-$)/g, '');
             window.history.pushState({ post: titleSlug }, post.title, `#post=${titleSlug}`);
-            
             // Hide all pages and show detail
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
                 page.classList.add('hidden');
             });
             postDetailElement.classList.remove('hidden');
-            
             // Populate detail view with fallback values
             detailTitleElement.textContent = post.title || 'Untitled Post';
             detailMetaElement.innerHTML = `
                 <span>By ${post.author || 'Unknown author'}</span>
                 <span>${post.date ? formatDate(post.date) : 'Unknown date'}</span>
             `;
-            
             // Set permalink
             const permalinkUrl = generatePermalink(post);
             permalinkUrlElement.textContent = permalinkUrl;
-            
             detailImageElement.src = post.image || 'https://placehold.co/800x400/22c55e/ffffff?text=Bandar+Urban+Farm';
             detailImageElement.alt = post.title || 'Blog post image';
-            
             detailContentElement.textContent = post.content || 'No content available.';
-            
             // Clear and populate tags
             detailTagsElement.innerHTML = '';
             const tags = post.tags && post.tags.length ? post.tags : ['No tags'];
@@ -1534,23 +1336,19 @@
                 tagElement.textContent = tag;
                 detailTagsElement.appendChild(tagElement);
             });
-            
             // Update share buttons
             const shareUrl = encodeURIComponent(permalinkUrl);
             const shareText = encodeURIComponent(post.title);
-            
             facebookShare.onclick = () => {
                 window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`, '_blank');
             };
-            
             whatsappShare.onclick = () => {
                 window.open(`https://wa.me/?text=${shareText}%20${shareUrl}`, '_blank');
             };
-            
             // Scroll to top
             window.scrollTo(0, 0);
         }
-
+        
         // Show page content
         function showPage(pageId) {
             // Hide all pages and post detail
@@ -1559,14 +1357,12 @@
                 page.classList.add('hidden');
             });
             postDetailElement.classList.add('hidden');
-            
             // Show selected page
             const targetPage = document.getElementById(`${pageId}Page`);
             if (targetPage) {
                 targetPage.classList.remove('hidden');
                 targetPage.classList.add('active');
             }
-            
             // Update document title
             if (pageId === 'home') {
                 updateDocumentTitle(null);
@@ -1578,7 +1374,6 @@
                 updateDocumentTitle('Contact Us');
                 window.history.pushState({ page: 'contact' }, 'Contact - Bandar Urban Farm', window.location.pathname + '#contact');
             }
-            
             // Update active nav link
             navLinks.forEach(link => {
                 if (link.getAttribute('data-page') === pageId) {
@@ -1587,31 +1382,26 @@
                     link.classList.remove('active');
                 }
             });
-            
             // Scroll to top
             window.scrollTo(0, 0);
         }
-
+        
         // Show posts grid
         function showPostsGrid() {
             showPage('home');
             currentPost = null;
         }
-
+        
         // Render posts
         function renderPosts() {
             console.log('Rendering posts, current page:', currentPage);
-            
             // Clear grid
             postsGridElement.innerHTML = '';
-            
             // Calculate pagination
             const indexOfLastPost = currentPage * postsPerPage;
             const indexOfFirstPost = indexOfLastPost - postsPerPage;
             const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
-            
             console.log('Current posts to display:', currentPosts.length);
-            
             // Render posts
             if (currentPosts.length === 0) {
                 emptyStateElement.classList.remove('hidden');
@@ -1620,12 +1410,10 @@
             } else {
                 emptyStateElement.classList.add('hidden');
                 postsGridElement.classList.remove('hidden');
-                
                 currentPosts.forEach(post => {
                     const postCard = createPostCard(post);
                     postsGridElement.appendChild(postCard);
                 });
-                
                 // Show pagination if needed
                 if (filteredPosts.length > postsPerPage) {
                     paginationElement.classList.remove('hidden');
@@ -1633,24 +1421,19 @@
                     paginationElement.classList.add('hidden');
                 }
             }
-            
             // Render pagination
             renderPagination();
         }
-
+        
         // Render pagination
         function renderPagination() {
             paginationElement.innerHTML = '';
-            
             const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-            
             if (totalPages <= 1) {
                 paginationElement.classList.add('hidden');
                 return;
             }
-            
             paginationElement.classList.remove('hidden');
-            
             // Previous button
             const prevBtn = document.createElement('button');
             prevBtn.className = 'pagination-btn';
@@ -1664,7 +1447,6 @@
                 }
             });
             paginationElement.appendChild(prevBtn);
-            
             // Page numbers
             for (let i = 1; i <= totalPages; i++) {
                 const pageBtn = document.createElement('button');
@@ -1677,7 +1459,6 @@
                 });
                 paginationElement.appendChild(pageBtn);
             }
-            
             // Next button
             const nextBtn = document.createElement('button');
             nextBtn.className = 'pagination-btn';
@@ -1692,7 +1473,7 @@
             });
             paginationElement.appendChild(nextBtn);
         }
-
+        
         // Filter posts
         function filterPosts() {
             searchTerm = searchInput.value.toLowerCase();
@@ -1703,13 +1484,11 @@
                 (post.author && post.author.toLowerCase().includes(searchTerm)) ||
                 (post.excerpt && post.excerpt.toLowerCase().includes(searchTerm))
             );
-            
             currentPage = 1;
-            
             // Show appropriate view
             renderPosts();
         }
-
+        
         // Copy permalink to clipboard
         function copyToClipboard(text) {
             if (navigator.clipboard && window.isSecureContext) {
@@ -1742,11 +1521,10 @@
                 document.body.removeChild(textArea);
             }
         }
-
+        
         // Check URL for post on load
         function checkUrlForPost() {
             const hash = window.location.hash;
-            
             if (hash.includes('post=')) {
                 const postSlug = hash.split('=')[1];
                 // Find post by converting title to slug format
@@ -1757,7 +1535,6 @@
                         .replace(/(^-|-$)/g, '');
                     return titleSlug === postSlug;
                 });
-                
                 if (post) {
                     showPostDetail(post);
                     return;
@@ -1769,39 +1546,36 @@
                 showPage('contact');
                 return;
             }
-            
             // Default to home page
             showPage('home');
         }
-
+        
         // Toggle navigation menu
         function toggleMenu() {
             navMenu.classList.toggle('active');
             overlay.classList.toggle('active');
             document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
         }
-
+        
         // Close menu
         function closeAll() {
             navMenu.classList.remove('active');
             overlay.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
-
+        
         // Handle form submissions
         function handleFormSubmit(e) {
             e.preventDefault();
             alert('Thank you for your submission! In a real application, this would be sent to a server.');
             e.target.reset();
         }
-
+        
         // Initialize
         function init() {
             console.log('Initializing Bandar Urban Farm blog...');
-            
             // Load blog posts from CSV data
             loadBlogPosts();
-            
             // Event listeners
             searchInput.addEventListener('input', filterPosts);
             clearSearchBtn.addEventListener('click', () => {
@@ -1820,7 +1594,6 @@
             overlay.addEventListener('click', closeAll);
             newsletterForm.addEventListener('submit', handleFormSubmit);
             contactForm.addEventListener('submit', handleFormSubmit);
-            
             // Navigation links
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
@@ -1830,13 +1603,12 @@
                     closeAll();
                 });
             });
-            
             // Handle browser back/forward buttons
             window.addEventListener('popstate', (e) => {
                 checkUrlForPost();
             });
         }
-
+        
         // Start the application when DOM is loaded
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', init);

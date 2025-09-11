@@ -152,7 +152,7 @@
         let escapedText = text
           .replace(/\\/g, '\\\\')         // escape backslashes
           .replace(/"/g, '\\"')           // escape double quotes
-          .replace(/\r\n|\r|\n/g, '<br/><br/>'); // replace all types of line breaks
+          .replace(/\r\n|\r|\n/g, '<br/>'); // replace all types of line breaks
 
         // Output ONLY the transformed text — no "description" key or JSON structure
         jsonOutput.value = escapedText;

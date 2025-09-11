@@ -900,22 +900,19 @@
 
         /* Toast Notification */
         .toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #16a34a;
-            color: white;
-            padding: 12px 24px;
-                      background-color: #16a34a;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 6px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #16a34a;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 
         .toast.show {
             opacity: 1;
@@ -1377,23 +1374,26 @@
         }
 
         // Parse CSV to array of objects
-        function parseCSV(csv) {
-            const lines = csv.split('\n').filter(line => line.trim() !== '');
-            const headers = lines[0].split(',').map(h => h.trim());
-            
-            return lines.slice(1).map(line => {
-                const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                return headers.reduce((obj, header, i) => {
-                    let value = values[i] ? values[i].trim() : '';
-                    if (value.startsWith('"') && value.endsWith('"')) {
-                        value = value.slice(1, -1);
-                    }
-                    obj[header] = value;
-                    return obj;
-                }, {});
-            }).filter(post => post.id && post.title); // Filter out empty rows
-        }
-
+       function parseCSV(csv) {
+    // Split by either 
+ or 
+ to handle different line endings
+    const lines = csv.split(/\r?
+/).filter(line => line.trim() !== '');
+    const headers = lines[0].split(',').map(h => h.trim());
+    return lines.slice(1).map(line => {
+        const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+        return headers.reduce((obj, header, i) => {
+            let value = values[i] ? values[i].trim() : '';
+            // Handle quoted values
+            if (value.startsWith('"') && value.endsWith('"')) {
+                value = value.slice(1, -1).replace(/""/g, '"'); // Handle escaped quotes
+            }
+            obj[header] = value;
+            return obj;
+        }, {});
+    }).filter(post => post.id && post.title); // Filter out empty rows
+}
         // Load blog posts from external CSV
         function loadBlogPosts() {
             const csvUrl = "https://bandarurbanfarm.github.io/blogposts.csv";

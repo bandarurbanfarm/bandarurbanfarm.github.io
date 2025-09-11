@@ -1326,7 +1326,7 @@
             permalinkUrlElement.textContent = permalinkUrl;
             detailImageElement.src = post.image || 'https://placehold.co/800x400/22c55e/ffffff?text=Bandar+Urban+Farm';
             detailImageElement.alt = post.title || 'Blog post image';
-            detailContentElement.textContent = post.content || 'No content available.';
+            detailContentElement.innerHTML = post.content || 'No content available.';
             // Clear and populate tags
             detailTagsElement.innerHTML = '';
             const tags = post.tags && post.tags.length ? post.tags : ['No tags'];

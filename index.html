@@ -72,6 +72,7 @@
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary-color);
+            text-decoration: none;
         }
         .logo p {
             color: var(--light-text);
@@ -86,7 +87,7 @@
                 display: none;
             }
             .logo h1::after {
-                content: " BUF";
+                content: "";
             }
         }
         /* Navigation */
@@ -735,35 +736,56 @@
             margin-right: auto;
         }
         .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
             margin-bottom: 40px;
-            flex-wrap: wrap;
+            max-width: 400px;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
         }
         .footer-link {
             color: #9ca3af;
             font-size: 1rem;
             transition: color 0.2s ease;
             text-decoration: none;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
         }
         .footer-link:hover {
             color: var(--text-color);
+            background-color: #f3f4f6;
         }
         .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
             margin-bottom: 40px;
+            max-width: 400px;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .social-links {
+                grid-template-columns: 1fr;
+            }
         }
         .social-link {
             color: #9ca3af;
-            font-size: 1.5rem;
+            font-size: 1rem;
             transition: color 0.2s ease;
             text-decoration: none;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
         }
         .social-link:hover {
             color: var(--text-color);
+            background-color: #f3f4f6;
         }
         .copyright {
             text-align: center;
@@ -907,12 +929,6 @@
             .share-buttons {
                 flex-direction: column;
             }
-            /* Footer adjustments for mobile */
-            .footer-links, .social-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 12px;
-            }
         }
         /* Utility Classes */
         .hidden {
@@ -932,7 +948,9 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <h1>Bandar Urban Farm</h1>
+                <a href="#" id="homeLink" class="logo-link">
+                    <h1>Bandar Urban Farm</h1>
+                </a>
                 <p>Transformasi lahan sempit perkotaan untuk beternak dan berkebun</p>
             </div>
             <!-- Desktop Navigation -->
@@ -1143,18 +1161,10 @@
                 
                 <h4 style="margin: 20px 0 10px; color: var(--text-color);">Media Sosial</h4>
                 <div class="social-links">
-                    <a href="https://facebook.com/bandarurbanfarm" target="_blank" class="social-link">
-                        <i class="fab fa-facebook-f"></i> Facebook
-                    </a>
-                    <a href="https://instagram.com/bandarurbanfarm" target="_blank" class="social-link">
-                        <i class="fab fa-instagram"></i> Instagram
-                    </a>
-                    <a href="https://tiktok.com/@bandarurbanfarm" target="_blank" class="social-link">
-                        <i class="fab fa-tiktok"></i> TikTok
-                    </a>
-                    <a href="https://youtube.com/@bandarurbanfarm" target="_blank" class="social-link">
-                        <i class="fab fa-youtube"></i> YouTube
-                    </a>
+                    <a href="https://facebook.com/bandarurbanfarm" target="_blank" class="social-link">Facebook</a>
+                    <a href="https://instagram.com/bandarurbanfarm" target="_blank" class="social-link">Instagram</a>
+                    <a href="https://tiktok.com/@bandarurbanfarm" target="_blank" class="social-link">TikTok</a>
+                    <a href="https://youtube.com/@bandarurbanfarm" target="_blank" class="social-link">YouTube</a>
                 </div>
             </div>
             <div class="copyright">
@@ -1196,6 +1206,7 @@
         const newsletterForm = document.getElementById('newsletterForm');
         const contactForm = document.getElementById('contactForm');
         const yearElement = document.getElementById('year');
+        const homeLink = document.getElementById('homeLink');
         
         // Set current year
         yearElement.textContent = new Date().getFullYear();
@@ -1659,6 +1670,12 @@
             window.addEventListener('popstate', (e) => {
                 checkUrlForPost();
             });
+            
+            // Add click event for home link
+            homeLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('home');
+            });
         }
         
         // Start the application when DOM is loaded
@@ -1667,6 +1684,43 @@
         } else {
             init();
         }
+        
+        // Add mobile-specific styling for header
+        const mobileStyle = document.createElement('style');
+        mobileStyle.textContent = `
+            @media (max-width: 768px) {
+                .logo h1 {
+                    font-size: 1.5rem;
+                }
+                .logo p {
+                    display: none;
+                }
+                .logo h1::after {
+                    content: "";
+                }
+                .logo h1 {
+                    content: "BUF";
+                }
+                .logo h1 {
+                    font-size: 1.5rem;
+                }
+            }
+        `;
+        document.head.appendChild(mobileStyle);
+        
+        // Update logo text for mobile devices
+        function updateLogoForMobile() {
+            const logoH1 = document.querySelector('.logo h1');
+            if (window.innerWidth <= 768) {
+                logoH1.textContent = "BUF";
+            } else {
+                logoH1.textContent = "Bandar Urban Farm";
+            }
+        }
+        
+        // Call on load and resize
+        window.addEventListener('load', updateLogoForMobile);
+        window.addEventListener('resize', updateLogoForMobile);
     </script>
 </body>
 </html>

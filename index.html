@@ -72,7 +72,6 @@
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary-color);
-            text-decoration: none;
         }
         .logo p {
             color: var(--light-text);
@@ -535,6 +534,17 @@
             margin-bottom: 16px;
             gap: 16px;
         }
+        .author-profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
         .permalink {
             display: flex;
             align-items: center;
@@ -716,11 +726,22 @@
             margin-top: 80px;
         }
         .footer-content {
-            text-align: center;
-            margin-bottom: 40px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+            }
         }
         .footer-logo {
             font-size: 1.5rem;
@@ -737,16 +758,9 @@
         }
         .footer-links {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr;
             gap: 15px;
-            margin-bottom: 40px;
-            max-width: 400px;
-            width: 100%;
-        }
-        @media (max-width: 768px) {
-            .footer-links {
-                grid-template-columns: 1fr;
-            }
+            margin: 0 auto;
         }
         .footer-link {
             color: #9ca3af;
@@ -763,16 +777,9 @@
         }
         .social-links {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr;
             gap: 15px;
-            margin-bottom: 40px;
-            max-width: 400px;
-            width: 100%;
-        }
-        @media (max-width: 768px) {
-            .social-links {
-                grid-template-columns: 1fr;
-            }
+            margin: 0 auto;
         }
         .social-link {
             color: #9ca3af;
@@ -1116,7 +1123,12 @@
             <button id="backBtn" class="back-btn">← Ke Beranda</button>
             <h1 id="detailTitle" class="post-detail-title"></h1>
             <div id="detailMeta" class="post-detail-meta">
-                Oleh <a href="https://wa.me/6285773009666" target="_blank" style="color: var(--primary-color); text-decoration: underline;">Wahyudi</a>
+                <div class="author-profile">
+                    <img src="https://placehold.co/100x100/22c55e/ffffff?text=W" alt="Wahyudi" class="author-avatar">
+                    <span>Oleh <a href="https://wa.me/6285773009666" target="_blank" style="color: var(--primary-color); text-decoration: underline;">Wahyudi</a></span>
+                </div>
+                <span class="separator">•</span>
+                <span id="detailDate">Tanggal tidak diketahui</span>
             </div>
             <div id="permalink" class="permalink">
                 <span class="permalink-icon">🔗</span>
@@ -1148,23 +1160,29 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <h3 class="footer-logo">Bandar Urban Farm</h3>
-                <p class="footer-description">Membangun komunitas, satu kebun perkotaan pada satu waktu</p>
-                
-                <h4 style="margin: 20px 0 10px; color: var(--text-color);">Tautan</h4>
-                <div class="footer-links">
-                    <a href="#" class="footer-link" onclick="showPage('contact'); return false;">Kontak</a>
-                    <a href="#" class="footer-link" onclick="showPage('about'); return false;">Tentang</a>
-                    <a href="#" class="footer-link">Syarat & Ketentuan</a>
-                    <a href="#" class="footer-link">Kebijakan Privasi</a>
+                <div class="footer-column">
+                    <h3 class="footer-logo">Bandar Urban Farm</h3>
+                    <p class="footer-description">Membangun komunitas, satu kebun perkotaan pada satu waktu</p>
                 </div>
                 
-                <h4 style="margin: 20px 0 10px; color: var(--text-color);">Media Sosial</h4>
-                <div class="social-links">
-                    <a href="https://facebook.com/bandarurbanfarm" target="_blank" class="social-link">Facebook</a>
-                    <a href="https://instagram.com/bandarurbanfarm" target="_blank" class="social-link">Instagram</a>
-                    <a href="https://tiktok.com/@bandarurbanfarm" target="_blank" class="social-link">TikTok</a>
-                    <a href="https://youtube.com/@bandarurbanfarm" target="_blank" class="social-link">YouTube</a>
+                <div class="footer-column">
+                    <h4 style="margin: 20px 0 10px; color: var(--text-color);">Tautan</h4>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link" onclick="showPage('contact'); return false;">Kontak</a>
+                        <a href="#" class="footer-link" onclick="showPage('about'); return false;">Tentang</a>
+                        <a href="#" class="footer-link">Syarat & Ketentuan</a>
+                        <a href="#" class="footer-link">Kebijakan Privasi</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 style="margin: 20px 0 10px; color: var(--text-color);">Media Sosial</h4>
+                    <div class="social-links">
+                        <a href="https://facebook.com/bandarurbanfarm" target="_blank" class="social-link">Facebook</a>
+                        <a href="https://instagram.com/bandarurbanfarm" target="_blank" class="social-link">Instagram</a>
+                        <a href="https://tiktok.com/@bandarurbanfarm" target="_blank" class="social-link">TikTok</a>
+                        <a href="https://youtube.com/@bandarurbanfarm" target="_blank" class="social-link">YouTube</a>
+                    </div>
                 </div>
             </div>
             <div class="copyright">
@@ -1332,7 +1350,10 @@
                 <img src="${image}" alt="${title}" class="post-image">
                 <div class="post-content">
                     <div class="post-meta">
-                        <span>Oleh <a href="https://wa.me/6285773009666" target="_blank" style="color: var(--primary-color); text-decoration: underline;">${author}</a></span>
+                        <div class="author-profile">
+                            <img src="https://placehold.co/50x50/22c55e/ffffff?text=W" alt="Wahyudi" class="author-avatar">
+                            <span>Oleh <a href="https://wa.me/6285773009666" target="_blank" style="color: var(--primary-color); text-decoration: underline;">${author}</a></span>
+                        </div>
                         <span class="separator">•</span>
                         <span>${date}</span>
                     </div>
@@ -1367,12 +1388,8 @@
             postDetailElement.classList.remove('hidden');
             // Populate detail view with fallback values
             detailTitleElement.textContent = post.title || 'Postingan Tanpa Judul';
-            // Author is always Wahyudi with link
-            detailMetaElement.innerHTML = `
-                Oleh <a href="https://wa.me/6285773009666" target="_blank" style="color: var(--primary-color); text-decoration: underline;">Wahyudi</a>
-                <span class="separator">•</span>
-                <span>${post.date ? formatDate(post.date) : 'Tanggal tidak diketahui'}</span>
-            `;
+            // Update date
+            document.getElementById('detailDate').textContent = post.date ? formatDate(post.date) : 'Tanggal tidak diketahui';
             // Set permalink
             const permalinkUrl = generatePermalink(post);
             permalinkUrlElement.textContent = permalinkUrl;
@@ -1697,12 +1714,6 @@
                 }
                 .logo h1::after {
                     content: "";
-                }
-                .logo h1 {
-                    content: "BUF";
-                }
-                .logo h1 {
-                    font-size: 1.5rem;
                 }
             }
         `;

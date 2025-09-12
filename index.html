@@ -939,9 +939,9 @@
             <nav class="desktop-nav">
                 <ul>
                     <li><a href="/" class="nav-link active" data-page="home">Beranda</a></li>
-                    <li><a href="/-menu-about" class="nav-link" data-page="about">Tentang</a></li>
-                    <li><a href="/-menu-wahyudi" class="nav-link" data-page="wahyudi">Wahyudi</a></li>
-                    <li><a href="/-menu-contact" class="nav-link" data-page="contact">Kontak</a></li>
+                    <li><a href="/menu-about" class="nav-link" data-page="about">Tentang</a></li>
+                    <li><a href="/menu-wahyudi" class="nav-link" data-page="wahyudi">Wahyudi</a></li>
+                    <li><a href="/menu-contact" class="nav-link" data-page="contact">Kontak</a></li>
                 </ul>
             </nav>
             <div class="header-actions">
@@ -961,9 +961,9 @@
         <h3>Menu</h3>
         <ul>
             <li><a href="/" class="nav-link active" data-page="home"><i class="fas fa-home"></i> Beranda</a></li>
-            <li><a href="/-menu-about" class="nav-link" data-page="about"><i class="fas fa-info-circle"></i> Tentang</a></li>
-            <li><a href="/-menu-wahyudi" class="nav-link" data-page="wahyudi"><i class="fas fa-user"></i> Wahyudi</a></li>
-            <li><a href="/-menu-contact" class="nav-link" data-page="contact"><i class="fas fa-phone-alt"></i> Kontak</a></li>
+            <li><a href="/menu-about" class="nav-link" data-page="about"><i class="fas fa-info-circle"></i> Tentang</a></li>
+            <li><a href="/menu-wahyudi" class="nav-link" data-page="wahyudi"><i class="fas fa-user"></i> Wahyudi</a></li>
+            <li><a href="/menu-contact" class="nav-link" data-page="contact"><i class="fas fa-phone-alt"></i> Kontak</a></li>
         </ul>
     </div>
     <!-- Overlay -->
@@ -1168,9 +1168,9 @@
                 <div class="footer-column">
                     <h4 style="margin: 20px 0 10px; color: var(--text-color);">Tautan</h4>
                     <div class="footer-links">
-                        <a href="/-menu-contact" class="footer-link">Kontak</a>
-                        <a href="/-menu-about" class="footer-link">Tentang</a>
-                        <a href="/-menu-wahyudi" class="footer-link">Wahyudi</a>
+                        <a href="/menu-contact" class="footer-link">Kontak</a>
+                        <a href="/menu-about" class="footer-link">Tentang</a>
+                        <a href="/menu-wahyudi" class="footer-link">Wahyudi</a>
                         <a href="#" class="footer-link">Syarat & Ketentuan</a>
                         <a href="#" class="footer-link">Kebijakan Privasi</a>
                     </div>
@@ -1242,7 +1242,7 @@
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/g, '-')
                 .replace(/(^-|-$)/g, '');
-            return `${baseUrl}-blog-${titleSlug}`;
+            return `${baseUrl}blog-${titleSlug}`;
         }
         
         // Update document title for SEO
@@ -1347,7 +1347,7 @@
                     <div class="post-meta">
                         <div class="author-profile">
                             <img src="https://placehold.co/50x50/22c55e/ffffff?text=W" alt="Wahyudi" class="author-avatar">
-                            <span>Oleh <a href="/-menu-wahyudi" style="color: var(--primary-color); text-decoration: underline;">${author}</a></span>
+                            <span>Oleh <a href="/menu-wahyudi" style="color: var(--primary-color); text-decoration: underline;">${author}</a></span>
                         </div>
                         <span class="separator">•</span>
                         <span>${date}</span>
@@ -1366,7 +1366,7 @@
                     .toLowerCase()
                     .replace(/[^a-z0-9]+/g, '-')
                     .replace(/(^-|-$)/g, '');
-                const postUrl = `-blog-${titleSlug}`;
+                const postUrl = `blog-${titleSlug}`;
                 
                 // Update the URL
                 window.history.pushState({ post: titleSlug }, post.title, `/${postUrl}`);
@@ -1393,7 +1393,7 @@
             detailMetaElement.innerHTML = `
                 <div class="author-profile">
                     <img src="https://placehold.co/50x50/22c55e/ffffff?text=W" alt="Wahyudi" class="author-avatar">
-                    <span>Oleh <a href="/-menu-wahyudi" style="color: var(--primary-color); text-decoration: underline;">Wahyudi</a></span>
+                    <span>Oleh <a href="/menu-wahyudi" style="color: var(--primary-color); text-decoration: underline;">Wahyudi</a></span>
                 </div>
                 <span class="separator">•</span>
                 <span>${post.date ? formatDate(post.date) : 'Tanggal tidak diketahui'}</span>
@@ -1446,13 +1446,13 @@
                 window.history.pushState({ page: 'home' }, 'Bandar Urban Farm', window.location.pathname);
             } else if (pageId === 'about') {
                 updateDocumentTitle('Tentang Kami');
-                window.history.pushState({ page: 'about' }, 'Tentang - Bandar Urban Farm', window.location.pathname + '-menu-about');
+                window.history.pushState({ page: 'about' }, 'Tentang - Bandar Urban Farm', window.location.pathname + 'menu-about');
             } else if (pageId === 'wahyudi') {
                 updateDocumentTitle('Wahyudi');
-                window.history.pushState({ page: 'wahyudi' }, 'Wahyudi - Bandar Urban Farm', window.location.pathname + '-menu-wahyudi');
+                window.history.pushState({ page: 'wahyudi' }, 'Wahyudi - Bandar Urban Farm', window.location.pathname + 'menu-wahyudi');
             } else if (pageId === 'contact') {
                 updateDocumentTitle('Hubungi Kami');
-                window.history.pushState({ page: 'contact' }, 'Kontak - Bandar Urban Farm', window.location.pathname + '-menu-contact');
+                window.history.pushState({ page: 'contact' }, 'Kontak - Bandar Urban Farm', window.location.pathname + 'menu-contact');
             }
             // Update active nav link
             document.querySelectorAll('.nav-link').forEach(link => {
@@ -1574,8 +1574,8 @@
             const path = window.location.pathname;
             
             // Check for blog post
-            if (path.includes('-blog-')) {
-                const postSlug = path.split('-blog-')[1];
+            if (path.includes('blog-')) {
+                const postSlug = path.split('blog-')[1];
                 // Find post by converting title to slug format
                 const post = blogPosts.find(p => {
                     const titleSlug = p.title
@@ -1590,13 +1590,13 @@
                 }
             } 
             // Check for menu pages
-            else if (path.includes('-menu-about')) {
+            else if (path.includes('menu-about')) {
                 showPage('about');
                 return;
-            } else if (path.includes('-menu-wahyudi')) {
+            } else if (path.includes('menu-wahyudi')) {
                 showPage('wahyudi');
                 return;
-            } else if (path.includes('-menu-contact')) {
+            } else if (path.includes('menu-contact')) {
                 showPage('contact');
                 return;
             }
@@ -1668,11 +1668,11 @@
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const href = link.getAttribute('href');
-                    if (href.includes('-menu-about')) {
+                    if (href.includes('menu-about')) {
                         showPage('about');
-                    } else if (href.includes('-menu-wahyudi')) {
+                    } else if (href.includes('menu-wahyudi')) {
                         showPage('wahyudi');
-                    } else if (href.includes('-menu-contact')) {
+                    } else if (href.includes('menu-contact')) {
                         showPage('contact');
                     }
                     closeAll();

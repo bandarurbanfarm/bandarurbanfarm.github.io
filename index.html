@@ -538,12 +538,93 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            cursor: pointer;
         }
         .author-avatar {
             width: 32px;
             height: 32px;
             border-radius: 50%;
             object-fit: cover;
+            transition: transform 0.2s;
+        }
+        .author-avatar:hover {
+            transform: scale(1.1);
+        }
+        .author-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .author-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .author-modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .close-author-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+        .author-modal-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--primary-color);
+        }
+        .author-modal-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        .author-modal-bio {
+            color: var(--text-color);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .author-modal-contact {
+            margin-top: 20px;
+        }
+        .author-modal-contact a {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        .author-modal-contact a:hover {
+            background-color: var(--secondary-color);
         }
         .permalink {
             display: flex;
@@ -1100,7 +1181,7 @@
                 </div>
                 <div class="page-section">
                     <h3>Kirim Pesan</h3>
-                    <form class="contact-form" id="contactForm" action="https://wa.me/6285773009666" method="GET">
+                    <form class="contact-form" id="contactForm">
                         <div class="form-group">
                             <label for="name" class="form-label">Nama Anda</label>
                             <input type="text" id="name" name="name" class="form-input" required>
@@ -1123,7 +1204,7 @@
             <button id="backBtn" class="back-btn">← Ke Beranda</button>
             <h1 id="detailTitle" class="post-detail-title"></h1>
             <div id="detailMeta" class="post-detail-meta">
-                <div class="author-profile">
+                <div class="author-profile" id="authorProfile">
                     <img src="https://placehold.co/100x100/22c55e/ffffff?text=W" alt="Wahyudi" class="author-avatar">
                     <span>Oleh <a href="https://wa.me/6285773009666" target="_blank" style="color: var(--primary-color); text-decoration: underline;">Wahyudi</a></span>
                 </div>
@@ -1154,6 +1235,22 @@
             </div>
         </div>
     </main>
+    <!-- Author Modal -->
+    <div class="author-modal" id="authorModal">
+        <div class="author-modal-content">
+            <span class="close-author-modal" id="closeAuthorModal">&times;</span>
+            <img src="https://placehold.co/100x100/22c55e/ffffff?text=W" alt="Wahyudi" class="author-modal-avatar">
+            <h3 class="author-modal-name">Wahyudi</h3>
+            <p class="author-modal-bio">
+                Wahyudi adalah pendiri Bandar Urban Farm dan seorang ahli pertanian perkotaan dengan pengalaman lebih dari 10 tahun. 
+                Ia memiliki misi untuk membantu masyarakat perkotaan menanam makanan mereka sendiri, terlepas dari keterbatasan ruang.
+                Wahyudi percaya bahwa setiap orang berhak memiliki akses ke makanan segar dan sehat yang ditanam sendiri.
+            </p>
+            <div class="author-modal-contact">
+                <a href="https://wa.me/6285773009666" target="_blank">Hubungi Wahyudi</a>
+            </div>
+        </div>
+    </div>
     <!-- Toast Notification -->
     <div id="toast" class="toast">Tautan disalin ke clipboard!</div>
     <!-- Footer -->
@@ -1225,6 +1322,9 @@
         const contactForm = document.getElementById('contactForm');
         const yearElement = document.getElementById('year');
         const homeLink = document.getElementById('homeLink');
+        const authorProfile = document.getElementById('authorProfile');
+        const authorModal = document.getElementById('authorModal');
+        const closeAuthorModal = document.getElementById('closeAuthorModal');
         
         // Set current year
         yearElement.textContent = new Date().getFullYear();
@@ -1350,7 +1450,7 @@
                 <img src="${image}" alt="${title}" class="post-image">
                 <div class="post-content">
                     <div class="post-meta">
-                        <div class="author-profile">
+                        <div class="author-profile" data-author="wahyudi">
                             <img src="https://placehold.co/50x50/22c55e/ffffff?text=W" alt="Wahyudi" class="author-avatar">
                             <span>Oleh <a href="https://wa.me/6285773009666" target="_blank" style="color: var(--primary-color); text-decoration: underline;">${author}</a></span>
                         </div>
@@ -1492,6 +1592,15 @@
             }
             // Render pagination
             renderPagination();
+            
+            // Add event listeners to author profiles
+            document.querySelectorAll('.author-profile').forEach(profile => {
+                profile.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showAuthorModal();
+                });
+            });
         }
         
         // Render pagination
@@ -1651,6 +1760,18 @@
             window.location.href = `https://wa.me/6285773009666?text=${whatsappMessage}`;
         }
         
+        // Show author modal
+        function showAuthorModal() {
+            authorModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close author modal
+        function closeAuthorModalFunc() {
+            authorModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
         // Initialize
         function init() {
             console.log('Initializing Bandar Urban Farm blog...');
@@ -1692,6 +1813,28 @@
             homeLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 showPage('home');
+            });
+            
+            // Author modal event listeners
+            authorProfile.addEventListener('click', (e) => {
+                e.preventDefault();
+                showAuthorModal();
+            });
+            
+            closeAuthorModal.addEventListener('click', closeAuthorModalFunc);
+            authorModal.addEventListener('click', (e) => {
+                if (e.target === authorModal) {
+                    closeAuthorModalFunc();
+                }
+            });
+            
+            // Add event listeners to author profiles in post cards (after they're rendered)
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.author-profile')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showAuthorModal();
+                }
             });
         }
         

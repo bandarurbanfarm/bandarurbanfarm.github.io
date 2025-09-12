@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -534,27 +534,16 @@
             margin-bottom: 16px;
             gap: 16px;
         }
-        .permalink {
+        .author-profile {
             display: flex;
             align-items: center;
-            font-size: 0.9rem;
-            color: var(--primary-color);
-            margin-bottom: 24px;
-            padding: 12px;
-            background-color: #f0fdf4;
-            border-radius: 6px;
-            border: 1px solid #bbf7d0;
+            gap: 8px;
         }
-        .permalink-icon {
-            margin-right: 8px;
-        }
-        .copy-permalink {
-            margin-left: 8px;
-            cursor: pointer;
-            color: var(--secondary-color);
-        }
-        .copy-permalink:hover {
-            text-decoration: underline;
+        .author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
         }
         .post-detail-image {
             width: 100%;
@@ -614,99 +603,6 @@
         .whatsapp-btn {
             background-color: #25D366;
         }
-        /* About and Contact Pages */
-        .page {
-            display: none;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        .page.active {
-            display: block;
-        }
-        .page h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        .page-content {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
-        .page-section {
-            margin-bottom: 30px;
-        }
-        .page-section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-        }
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-        /* Contact Form */
-        .contact-form {
-            margin-top: 30px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
-        }
-        .form-textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        .submit-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .submit-btn:hover {
-            background-color: var(--secondary-color);
-        }
         /* Footer */
         footer {
             background-color: white;
@@ -715,11 +611,22 @@
             margin-top: 80px;
         }
         .footer-content {
-            text-align: center;
-            margin-bottom: 40px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+            }
         }
         .footer-logo {
             font-size: 1.5rem;
@@ -734,19 +641,43 @@
             margin-left: auto;
             margin-right: auto;
         }
+        .footer-links {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin: 0 auto;
+        }
+        .footer-link {
+            color: #9ca3af;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .footer-link:hover {
+            color: var(--text-color);
+            background-color: #f3f4f6;
+        }
         .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin: 0 auto;
         }
         .social-link {
             color: #9ca3af;
-            font-size: 1.5rem;
+            font-size: 1rem;
             transition: color 0.2s ease;
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
         }
         .social-link:hover {
             color: var(--text-color);
+            background-color: #f3f4f6;
         }
         .copyright {
             text-align: center;
@@ -909,21 +840,23 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <h1>Bandar Urban Farm</h1>
+                <a href="/" id="homeLink" class="logo-link">
+                    <h1>Bandar Urban Farm</h1>
+                </a>
                 <p>Transformasi lahan sempit perkotaan untuk beternak dan berkebun</p>
             </div>
             <!-- Desktop Navigation -->
             <nav class="desktop-nav">
                 <ul>
-                    <li><a href="#" class="nav-link active" data-page="home">Beranda</a></li>
-                    <li><a href="#about" class="nav-link" data-page="about">Tentang</a></li>
-                    <li><a href="#contact" class="nav-link" data-page="contact">Kontak</a></li>
+                    <li><a href="/" class="nav-link" data-page="home">Beranda</a></li>
+                    <li><a href="/about.htm" class="nav-link" data-page="about">Tentang</a></li>
+                    <li><a href="/contact.htm" class="nav-link" data-page="contact">Kontak</a></li>
                 </ul>
             </nav>
             <div class="header-actions">
                 <div class="search-container">
                     <span class="search-icon">🔍</span>
-                    <input type="text" class="search-input" id="searchInput" placeholder="Search posts...">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Cari artikel...">
                 </div>
                 <button class="menu-toggle" id="menuToggle">
                     <i class="fas fa-bars"></i>
@@ -936,9 +869,9 @@
         <span class="close-menu" id="closeMenu">&times;</span>
         <h3>Menu</h3>
         <ul>
-            <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> Beranda</a></li>
-            <li><a href="#about" class="nav-link" data-page="about"><i class="fas fa-info-circle"></i> Tentang</a></li>
-            <li><a href="#contact" class="nav-link" data-page="contact"><i class="fas fa-phone-alt"></i> Kontak</a></li>
+            <li><a href="/" class="nav-link" data-page="home"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="/about.htm" class="nav-link" data-page="about"><i class="fas fa-info-circle"></i> Tentang</a></li>
+            <li><a href="/contact.htm" class="nav-link" data-page="contact"><i class="fas fa-phone-alt"></i> Kontak</a></li>
         </ul>
     </div>
     <!-- Overlay -->
@@ -959,16 +892,16 @@
             <!-- Loading State -->
             <div id="loading" class="loading-container">
                 <div class="spinner"></div>
-                <p class="loading-text">Loading blog posts...</p>
+                <p class="loading-text">Memuat artikel...</p>
             </div>
             <!-- Error State -->
             <div id="errorState" class="error-state">
                 <svg class="error-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <h3 class="error-title">Error Loading Posts</h3>
-                <p class="error-message">We couldn't load the blog posts. Please try again later.</p>
-                <button id="retryBtn" class="retry-btn">Retry</button>
+                <h3 class="error-title">Gagal Memuat Artikel</h3>
+                <p class="error-message">Kami tidak dapat memuat artikel. Silakan coba lagi nanti.</p>
+                <button id="retryBtn" class="retry-btn">Coba Lagi</button>
             </div>
             <!-- Blog Posts Grid -->
             <div id="postsGrid" class="posts-grid hidden"></div>
@@ -977,146 +910,43 @@
                 <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.467-.827-6.08-2.147M12 15v2m-6-2v2m12-2v2"></path>
                 </svg>
-                <h3 class="empty-title">No posts found</h3>
-                <p class="empty-message">Try adjusting your search or filter to find what you're looking for.</p>
-                <button id="clearSearch" class="clear-btn">Clear search</button>
+                <h3 class="empty-title">Tidak ada artikel ditemukan</h3>
+                <p class="empty-message">Coba sesuaikan pencarian atau filter untuk menemukan apa yang Anda cari.</p>
+                <button id="clearSearch" class="clear-btn">Hapus pencarian</button>
             </div>
             <!-- Pagination -->
             <div id="pagination" class="pagination hidden"></div>
         </div>
-        <!-- About Page -->
-        <div class="page" id="aboutPage">
-            <h2>Tentang Bandar Urban Farm</h2>
-            <div class="page-content">
-                <div class="page-section">
-                    <h3>Misi Kami</h3>
-                    <p>Bandar Urban Farm didedikasikan untuk mengubah ruang perkotaan menjadi kebun yang produktif dan berkembang. Kami percaya bahwa setiap orang, terlepas dari situasi tempat tinggal mereka, harus memiliki akses ke hasil bumi segar yang ditanam sendiri dan kegembiraan berkebun.</p>
-                </div>
-                <div class="page-section">
-                    <h3>Apa yang Kami Lakukan</h3>
-                    <p>Kami menyediakan panduan praktis, sumber daya, dan inspirasi bagi penduduk perkotaan yang ingin menanam makanan mereka sendiri. Dari kebun balkon kecil hingga pertanian atap, kami membantu Anda memanfaatkan ruang yang tersedia sebaik mungkin.</p>
-                    <p>Keahlian kami mencakup berkebun vertikal, berkebun wadah, pengomposan, kebun herbal dalam ruangan, dan banyak lagi. Kami bersemangat tentang kehidupan berkelanjutan dan membantu penduduk kota terhubung dengan sumber makanan mereka.</p>
-                </div>
-                <div class="page-section">
-                    <h3>Cerita Kami</h3>
-                    <p>Didirikan pada tahun 2020, Bandar Urban Farm dimulai sebagai inisiatif komunitas kecil untuk membantu penduduk perkotaan menanam makanan mereka sendiri selama masa-masa sulit. Apa yang dimulai sebagai proyek lingkungan telah berkembang menjadi sumber daya komprehensif bagi petani perkotaan di seluruh wilayah.</p>
-                    <p>Hari ini, kami terus memperluas jangkauan kami, membantu lebih banyak orang menemukan kepuasan dan keberlanjutan menanam makanan mereka sendiri di lingkungan perkotaan.</p>
-                </div>
-            </div>
-        </div>
-        <!-- Contact Page -->
-        <div class="page" id="contactPage">
-            <h2>Hubungi Kami</h2>
-            <div class="page-content">
-                <div class="page-section">
-                    <h3>Hubungi Kami</h3>
-                    <p>Punya pertanyaan tentang pertanian perkotaan? Ingin berbagi kisah sukses Anda? Kami ingin mendengar dari Anda!</p>
-                </div>
-                <div class="page-section">
-                    <h3>Informasi Kontak</h3>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div>
-                                <h4>Phone/WhatsApp</h4>
-                                <p><a href="https://wa.me/6285773009666">+62 857-7300-9666</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4>Email</h4>
-                                <p><a href="mailto:info@bandarurbanfarm.com">info@bandarurbanfarm.com</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Address</h4>
-                                <p>Urban Farming Center<br>Jakarta, Indonesia</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="page-section">
-                    <h3>Jam Operasional</h3>
-                    <p>Senin - Jumat: 09:00 - 17:00</p>
-                    <p>Sabtu: 10:00 - 15:00</p>
-                    <p>Minggu: Tutup</p>
-                </div>
-                <div class="page-section">
-                    <h3>Kirim Pesan</h3>
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Nama Anda</label>
-                            <input type="text" id="name" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email Anda</label>
-                            <input type="email" id="email" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message" class="form-label">Pesan</label>
-                            <textarea id="message" class="form-textarea" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Kirim Pesan</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Post Detail View -->
-        <div id="postDetail" class="post-detail hidden">
-            <button id="backBtn" class="back-btn">← Ke Beranda</button>
-            <h1 id="detailTitle" class="post-detail-title"></h1>
-            <div id="detailMeta" class="post-detail-meta"></div>
-            <div id="permalink" class="permalink">
-                <span class="permalink-icon">🔗</span>
-                <span id="permalinkUrl"></span>
-                <span id="copyPermalink" class="copy-permalink">Copy link</span>
-            </div>
-            <img id="detailImage" class="post-detail-image" src="" alt="">
-            <div id="detailContent" class="post-detail-content"></div>
-            <div class="post-detail-tags">
-                <h3>Tags:</h3>
-                <div id="detailTags" class="post-tags"></div>
-            </div>
-            <div class="share-section">
-                <h3>Share this post</h3>
-                <div class="share-buttons">
-                    <button class="share-btn facebook-btn" id="facebookShare">
-                        <i class="fab fa-facebook-f"></i> Facebook
-                    </button>
-                    <button class="share-btn whatsapp-btn" id="whatsappShare">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </button>
-                </div>
-            </div>
-        </div>
     </main>
     <!-- Toast Notification -->
-    <div id="toast" class="toast">Link copied to clipboard!</div>
+    <div id="toast" class="toast">Tautan disalin ke clipboard!</div>
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <h3 class="footer-logo">Bandar Urban Farm</h3>
-                <p class="footer-description">Growing communities, one urban garden at a time</p>
-                <div class="social-links">
-                    <a href="#" class="social-link">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+                <div class="footer-column">
+                    <h3 class="footer-logo">Bandar Urban Farm</h3>
+                    <p class="footer-description">Membangun komunitas, satu kebun perkotaan pada satu waktu</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 style="margin: 20px 0 10px; color: var(--text-color);">Tautan</h4>
+                    <div class="footer-links">
+                        <a href="/contact.htm" class="footer-link">Kontak</a>
+                        <a href="/about.htm" class="footer-link">Tentang</a>
+                        <a href="#" class="footer-link">Syarat & Ketentuan</a>
+                        <a href="#" class="footer-link">Kebijakan Privasi</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 style="margin: 20px 0 10px; color: var(--text-color);">Media Sosial</h4>
+                    <div class="social-links">
+                        <a href="https://facebook.com/bandarurbanfarm" target="_blank" class="social-link">Facebook</a>
+                        <a href="https://instagram.com/bandarurbanfarm" target="_blank" class="social-link">Instagram</a>
+                        <a href="https://tiktok.com/@bandarurbanfarm" target="_blank" class="social-link">TikTok</a>
+                        <a href="https://youtube.com/@bandarurbanfarm" target="_blank" class="social-link">YouTube</a>
+                    </div>
                 </div>
             </div>
             <div class="copyright">
@@ -1132,32 +962,14 @@
         const paginationElement = document.getElementById('pagination');
         const searchInput = document.getElementById('searchInput');
         const clearSearchBtn = document.getElementById('clearSearch');
-        const postDetailElement = document.getElementById('postDetail');
-        const backBtn = document.getElementById('backBtn');
-        const detailTitleElement = document.getElementById('detailTitle');
-        const detailMetaElement = document.getElementById('detailMeta');
-        const detailImageElement = document.getElementById('detailImage');
-        const detailContentElement = document.getElementById('detailContent');
-        const detailTagsElement = document.getElementById('detailTags');
-        const permalinkElement = document.getElementById('permalink');
-        const permalinkUrlElement = document.getElementById('permalinkUrl');
-        const copyPermalinkElement = document.getElementById('copyPermalink');
-        const toastElement = document.getElementById('toast');
         const errorStateElement = document.getElementById('errorState');
         const retryBtn = document.getElementById('retryBtn');
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
         const closeMenu = document.getElementById('closeMenu');
         const overlay = document.getElementById('overlay');
-        const homePage = document.getElementById('homePage');
-        const aboutPage = document.getElementById('aboutPage');
-        const contactPage = document.getElementById('contactPage');
-        const navLinks = document.querySelectorAll('.nav-link');
-        const facebookShare = document.getElementById('facebookShare');
-        const whatsappShare = document.getElementById('whatsappShare');
-        const newsletterForm = document.getElementById('newsletterForm');
-        const contactForm = document.getElementById('contactForm');
         const yearElement = document.getElementById('year');
+        const homeLink = document.getElementById('homeLink');
         
         // Set current year
         yearElement.textContent = new Date().getFullYear();
@@ -1172,9 +984,9 @@
         
         // Format date
         function formatDate(dateString) {
-            if (!dateString) return 'Unknown date';
+            if (!dateString) return 'Tanggal tidak diketahui';
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString(undefined, options);
+            return new Date(dateString).toLocaleDateString('id-ID', options);
         }
         
         // Generate SEO-friendly URL with post title
@@ -1193,7 +1005,7 @@
             if (title) {
                 document.title = `${title} - Bandar Urban Farm`;
             } else {
-                document.title = "Bandar Urban Farm - Transforming Urban Spaces into Thriving Gardens";
+                document.title = "Bandar Urban Farm - Transformasi lahan sempit perkotaan untuk beternak dan berkebun";
             }
         }
         
@@ -1246,8 +1058,6 @@
                     errorStateElement.classList.add('hidden');
                     postsGridElement.classList.remove('hidden');
                     renderPosts();
-                    // Check URL for direct post link
-                    checkUrlForPost();
                 })
                 .catch(error => {
                     console.error('Error loading external CSV:', error);
@@ -1273,17 +1083,20 @@
             const card = document.createElement('article');
             card.className = 'post-card fade-in';
             // Ensure we have fallback values for all fields
-            const title = post.title || 'Untitled Post';
-            const author = post.author || 'Unknown Author';
-            const date = post.date ? formatDate(post.date) : 'Unknown Date';
+            const title = post.title || 'Postingan Tanpa Judul';
+            const author = "Wahyudi";
+            const date = post.date ? formatDate(post.date) : 'Tanggal tidak diketahui';
             const image = post.image || 'https://placehold.co/800x400/22c55e/ffffff?text=Bandar+Urban+Farm';
-            const excerpt = post.excerpt || (post.content ? post.content.substring(0, 150) + '...' : 'No excerpt available.');
-            const tags = post.tags && post.tags.length ? post.tags : ['No tags'];
+            const excerpt = post.excerpt || (post.content ? post.content.substring(0, 150) + '...' : 'Tidak ada ringkasan tersedia.');
+            const tags = post.tags && post.tags.length ? post.tags : ['Tidak ada tag'];
             card.innerHTML = `
                 <img src="${image}" alt="${title}" class="post-image">
                 <div class="post-content">
                     <div class="post-meta">
-                        <span>${author}</span>
+                        <div class="author-profile">
+                            <img src="https://placehold.co/50x50/22c55e/ffffff?text=W" alt="Wahyudi" class="author-avatar">
+                            <span>Oleh <a href="https://wa.me/6285773009666" target="_blank" style="color: var(--primary-color); text-decoration: underline;">${author}</a></span>
+                        </div>
                         <span class="separator">•</span>
                         <span>${date}</span>
                     </div>
@@ -1295,102 +1108,12 @@
                     </div>
                 </div>
             `;
-            card.addEventListener('click', () => showPostDetail(post));
+            card.addEventListener('click', () => {
+                // Navigate to post detail page
+                const permalinkUrl = generatePermalink(post);
+                window.location.href = permalinkUrl;
+            });
             return card;
-        }
-        
-        // Show post detail
-        function showPostDetail(post) {
-            currentPost = post;
-            // Update document title for SEO
-            updateDocumentTitle(post.title);
-            // Update URL for SEO with post title
-            const titleSlug = post.title
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/(^-|-$)/g, '');
-            window.history.pushState({ post: titleSlug }, post.title, `#post=${titleSlug}`);
-            // Hide all pages and show detail
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-                page.classList.add('hidden');
-            });
-            postDetailElement.classList.remove('hidden');
-            // Populate detail view with fallback values
-            detailTitleElement.textContent = post.title || 'Untitled Post';
-            detailMetaElement.innerHTML = `
-                <span>By ${post.author || 'Unknown author'}</span>
-                <span>${post.date ? formatDate(post.date) : 'Unknown date'}</span>
-            `;
-            // Set permalink
-            const permalinkUrl = generatePermalink(post);
-            permalinkUrlElement.textContent = permalinkUrl;
-            detailImageElement.src = post.image || 'https://placehold.co/800x400/22c55e/ffffff?text=Bandar+Urban+Farm';
-            detailImageElement.alt = post.title || 'Blog post image';
-            detailContentElement.innerHTML = post.content || 'No content available.';
-            // Clear and populate tags
-            detailTagsElement.innerHTML = '';
-            const tags = post.tags && post.tags.length ? post.tags : ['No tags'];
-            tags.forEach(tag => {
-                const tagElement = document.createElement('span');
-                tagElement.className = 'tag';
-                tagElement.textContent = tag;
-                detailTagsElement.appendChild(tagElement);
-            });
-            // Update share buttons
-            const shareUrl = encodeURIComponent(permalinkUrl);
-            const shareText = encodeURIComponent(post.title);
-            facebookShare.onclick = () => {
-                window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`, '_blank');
-            };
-            whatsappShare.onclick = () => {
-                window.open(`https://wa.me/?text=${shareText}%20${shareUrl}`, '_blank');
-            };
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-        
-        // Show page content
-        function showPage(pageId) {
-            // Hide all pages and post detail
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-                page.classList.add('hidden');
-            });
-            postDetailElement.classList.add('hidden');
-            // Show selected page
-            const targetPage = document.getElementById(`${pageId}Page`);
-            if (targetPage) {
-                targetPage.classList.remove('hidden');
-                targetPage.classList.add('active');
-            }
-            // Update document title
-            if (pageId === 'home') {
-                updateDocumentTitle(null);
-                window.history.pushState({ page: 'home' }, 'Bandar Urban Farm', window.location.pathname);
-            } else if (pageId === 'about') {
-                updateDocumentTitle('Tentang Kami');
-                window.history.pushState({ page: 'about' }, 'Tentang - Bandar Urban Farm', window.location.pathname + '#about');
-            } else if (pageId === 'contact') {
-                updateDocumentTitle('Hubungi Kami');
-                window.history.pushState({ page: 'contact' }, 'Kontak - Bandar Urban Farm', window.location.pathname + '#contact');
-            }
-            // Update active nav link
-            navLinks.forEach(link => {
-                if (link.getAttribute('data-page') === pageId) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-        
-        // Show posts grid
-        function showPostsGrid() {
-            showPage('home');
-            currentPost = null;
         }
         
         // Render posts
@@ -1438,7 +1161,7 @@
             // Previous button
             const prevBtn = document.createElement('button');
             prevBtn.className = 'pagination-btn';
-            prevBtn.innerHTML = 'Previous';
+            prevBtn.innerHTML = 'Sebelumnya';
             prevBtn.disabled = currentPage === 1;
             prevBtn.addEventListener('click', () => {
                 if (currentPage > 1) {
@@ -1463,7 +1186,7 @@
             // Next button
             const nextBtn = document.createElement('button');
             nextBtn.className = 'pagination-btn';
-            nextBtn.innerHTML = 'Next';
+            nextBtn.innerHTML = 'Selanjutnya';
             nextBtn.disabled = currentPage === totalPages;
             nextBtn.addEventListener('click', () => {
                 if (currentPage < totalPages) {
@@ -1490,67 +1213,6 @@
             renderPosts();
         }
         
-        // Copy permalink to clipboard
-        function copyToClipboard(text) {
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text).then(() => {
-                    // Show toast notification
-                    toastElement.classList.add('show');
-                    setTimeout(() => {
-                        toastElement.classList.remove('show');
-                    }, 3000);
-                }).catch(err => {
-                    console.error('Failed to copy: ', err);
-                });
-            } else {
-                // Fallback for browsers that don't support clipboard API
-                const textArea = document.createElement('textarea');
-                textArea.value = text;
-                textArea.style.position = 'fixed';
-                textArea.style.opacity = '0';
-                document.body.appendChild(textArea);
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    toastElement.classList.add('show');
-                    setTimeout(() => {
-                        toastElement.classList.remove('show');
-                    }, 3000);
-                } catch (err) {
-                    console.error('Fallback: Failed to copy', err);
-                }
-                document.body.removeChild(textArea);
-            }
-        }
-        
-        // Check URL for post on load
-        function checkUrlForPost() {
-            const hash = window.location.hash;
-            if (hash.includes('post=')) {
-                const postSlug = hash.split('=')[1];
-                // Find post by converting title to slug format
-                const post = blogPosts.find(p => {
-                    const titleSlug = p.title
-                        .toLowerCase()
-                        .replace(/[^a-z0-9]+/g, '-')
-                        .replace(/(^-|-$)/g, '');
-                    return titleSlug === postSlug;
-                });
-                if (post) {
-                    showPostDetail(post);
-                    return;
-                }
-            } else if (hash === '#about') {
-                showPage('about');
-                return;
-            } else if (hash === '#contact') {
-                showPage('contact');
-                return;
-            }
-            // Default to home page
-            showPage('home');
-        }
-        
         // Toggle navigation menu
         function toggleMenu() {
             navMenu.classList.toggle('active');
@@ -1565,13 +1227,6 @@
             document.body.style.overflow = 'auto';
         }
         
-        // Handle form submissions
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            alert('Thank you for your submission! In a real application, this would be sent to a server.');
-            e.target.reset();
-        }
-        
         // Initialize
         function init() {
             console.log('Initializing Bandar Urban Farm blog...');
@@ -1583,30 +1238,14 @@
                 searchInput.value = '';
                 filterPosts();
             });
-            backBtn.addEventListener('click', showPostsGrid);
-            copyPermalinkElement.addEventListener('click', () => {
-                if (currentPost) {
-                    copyToClipboard(generatePermalink(currentPost));
-                }
-            });
             retryBtn.addEventListener('click', retryFetch);
             menuToggle.addEventListener('click', toggleMenu);
             closeMenu.addEventListener('click', toggleMenu);
             overlay.addEventListener('click', closeAll);
-            newsletterForm.addEventListener('submit', handleFormSubmit);
-            contactForm.addEventListener('submit', handleFormSubmit);
-            // Navigation links
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const page = link.getAttribute('data-page');
-                    showPage(page);
-                    closeAll();
-                });
-            });
-            // Handle browser back/forward buttons
-            window.addEventListener('popstate', (e) => {
-                checkUrlForPost();
+            // Add click event for home link
+            homeLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = '/';
             });
         }
         
@@ -1616,6 +1255,37 @@
         } else {
             init();
         }
+        
+        // Add mobile-specific styling for header
+        const mobileStyle = document.createElement('style');
+        mobileStyle.textContent = `
+            @media (max-width: 768px) {
+                .logo h1 {
+                    font-size: 1.5rem;
+                }
+                .logo p {
+                    display: none;
+                }
+                .logo h1::after {
+                    content: "";
+                }
+            }
+        `;
+        document.head.appendChild(mobileStyle);
+        
+        // Update logo text for mobile devices
+        function updateLogoForMobile() {
+            const logoH1 = document.querySelector('.logo h1');
+            if (window.innerWidth <= 768) {
+                logoH1.textContent = "BUF";
+            } else {
+                logoH1.textContent = "Bandar Urban Farm";
+            }
+        }
+        
+        // Call on load and resize
+        window.addEventListener('load', updateLogoForMobile);
+        window.addEventListener('resize', updateLogoForMobile);
     </script>
 </body>
 </html>

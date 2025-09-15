@@ -600,6 +600,64 @@
         .whatsapp-btn {
             background-color: #25D366;
         }
+        /* Related Posts Section */
+        .related-posts-section {
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-color);
+        }
+        .related-posts-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        .related-posts-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        .related-post-card {
+            display: flex;
+            gap: 16px;
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .related-post-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--hover-shadow);
+        }
+        .related-post-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .related-post-card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .related-post-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            color: var(--text-color);
+        }
+        .related-post-card h4:hover {
+            color: var(--primary-color);
+        }
+        .related-post-card p {
+            font-size: 0.85rem;
+            color: var(--light-text);
+            margin: 0;
+        }
         /* About and Contact Pages */
         .page {
             display: none;
@@ -911,6 +969,9 @@
             .share-buttons {
                 flex-direction: column;
             }
+            .related-posts-grid {
+                grid-template-columns: 1fr;
+            }
         }
         /* Utility Classes */
         .hidden {
@@ -1016,7 +1077,6 @@
                     <h3 class="footer-logo">Bandar Urban Farm</h3>
                     <p class="footer-description">Membangun komunitas, satu kebun perkotaan pada satu waktu</p>
                 </div>
-                
                 <div class="footer-column">
                     <h4 style="margin: 20px 0 10px; color: var(--text-color);">Tautan</h4>
                     <div class="footer-links">
@@ -1026,7 +1086,6 @@
                         <a href="#" class="footer-link">Kebijakan Privasi</a>
                     </div>
                 </div>
-                
                 <div class="footer-column">
                     <h4 style="margin: 20px 0 10px; color: var(--text-color);">Media Sosial</h4>
                     <div class="social-links">
@@ -1058,10 +1117,8 @@
         const overlay = document.getElementById('overlay');
         const yearElement = document.getElementById('year');
         const homeLink = document.getElementById('homeLink');
-        
         // Set current year
         yearElement.textContent = new Date().getFullYear();
-        
         // State
         let blogPosts = [];
         let currentPage = 1;
@@ -1069,14 +1126,12 @@
         let searchTerm = '';
         let filteredPosts = [];
         let currentPost = null;
-        
         // Format date
         function formatDate(dateString) {
             if (!dateString) return 'Tanggal tidak diketahui';
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             return new Date(dateString).toLocaleDateString('id-ID', options);
         }
-        
         // Generate SEO-friendly URL with post title
         function generatePermalink(post) {
             const baseUrl = window.location.origin + window.location.pathname;
@@ -1087,7 +1142,6 @@
                 .replace(/(^-|-$)/g, '');
             return `${baseUrl}post-${titleSlug}`;
         }
-        
         // Update document title for SEO
         function updateDocumentTitle(title) {
             if (title) {
@@ -1096,7 +1150,6 @@
                 document.title = "Bandar Urban Farm - Transformasi lahan sempit perkotaan untuk beternak dan berkebun";
             }
         }
-        
         // Parse CSV to array of objects (improved version)
         function parseCSV(csv) {
             // Split by either \r\n or \n to handle different line endings
@@ -1115,7 +1168,6 @@
                 }, {});
             }).filter(post => post.id && post.title); // Filter out empty rows
         }
-        
         // Load blog posts from external CSV
         function loadBlogPosts() {
             const csvUrl = "https://bandarurbanfarm.github.io/blogposts.csv";
@@ -1159,20 +1211,17 @@
                     showErrorState();
                 });
         }
-        
         // Show error state
         function showErrorState() {
             loadingElement.classList.add('hidden');
             errorStateElement.classList.remove('hidden');
         }
-        
         // Retry fetching data
         function retryFetch() {
             errorStateElement.classList.add('hidden');
             loadingElement.classList.remove('hidden');
             loadBlogPosts();
         }
-        
         // Create post card
         function createPostCard(post) {
             const card = document.createElement('article');
@@ -1210,45 +1259,123 @@
                     .replace(/[^a-z0-9]+/g, '-')
                     .replace(/(^-|-$)/g, '');
                 const postUrl = `post-${titleSlug}`;
-                
                 // Update the URL
                 window.history.pushState({ post: titleSlug }, post.title, postUrl);
-                
                 // Show the post detail
                 showPostDetail(post);
             });
             return card;
         }
-        
-        showPostDetail
+        // Show post detail
+        function showPostDetail(post) {
+            // Create a new div for the post detail
+            const postDetailHTML = `
+                <div class="post-detail" id="dynamicPostDetail">
+                    <button id="backBtn" class="back-btn">← Ke Beranda</button>
+                    <h1 class="post-detail-title">${post.title || 'Postingan Tanpa Judul'}</h1>
+                    <div class="post-detail-meta">
+                        <div class="author-profile">
+                            <img src="https://placehold.co/50x50/22c55e/ffffff?text=W" alt="Wahyudi" class="author-avatar">
+                            <span>Oleh <a href="https://wa.me/6285773009666" target="_blank" style="color: var(--primary-color); text-decoration: underline;">Wahyudi</a></span>
+                        </div>
+                        <span class="separator">•</span>
+                        <span>${post.date ? formatDate(post.date) : 'Tanggal tidak diketahui'}</span>
+                    </div>
+                    <img src="${post.image || 'https://placehold.co/800x400/22c55e/ffffff?text=Bandar+Urban+Farm'}" alt="${post.title || 'Gambar postingan blog'}" class="post-detail-image">
+                    <div class="post-detail-content">${post.content || 'Tidak ada konten tersedia.'}</div>
+                    <div class="post-detail-tags">
+                        <h3>Tags:</h3>
+                        <div class="post-tags">
+                            ${(post.tags && post.tags.length ? post.tags : ['Tidak ada tag']).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="share-section">
+                        <h3>Bagikan postingan ini</h3>
+                        <div class="share-buttons">
+                            <button class="share-btn facebook-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}', '_blank')">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </button>
+                            <button class="share-btn whatsapp-btn" onclick="window.open('https://wa.me/?text=${encodeURIComponent(post.title)}%20${encodeURIComponent(window.location.href)}', '_blank')">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- RELATED POSTS SECTION -->
+                    <div class="related-posts-section">
+                        <h3>Baca Juga</h3>
+                        <div class="related-posts-grid">
+                            ${(() => {
+                                // Find related posts (sharing at least one tag)
+                                const relatedPosts = blogPosts.filter(p => {
+                                    // Don't include the current post itself
+                                    if (p.id === post.id) return false;
+                                    // Check if there's any overlap in tags
+                                    if (!p.tags || !post.tags) return false;
+                                    return p.tags.some(tag => post.tags.includes(tag));
+                                }).slice(0, 3); // Limit to 3 related posts
+
+                                if (relatedPosts.length === 0) {
+                                    return `<p style="text-align: center; color: var(--light-text); grid-column: 1 / -1;">Tidak ada artikel terkait yang ditemukan.</p>`;
+                                }
+
+                                return relatedPosts.map(relatedPost => `
+                                    <div class="related-post-card" data-post-id="${relatedPost.id}">
+                                        <img src="${relatedPost.image || 'https://placehold.co/150x150/22c55e/ffffff?text=BUF'}" alt="${relatedPost.title}">
+                                        <div class="related-post-card-content">
+                                            <h4>${relatedPost.title}</h4>
+                                            <p>${relatedPost.excerpt ? relatedPost.excerpt.substring(0, 100) + '...' : ''}</p>
+                                        </div>
+                                    </div>
+                                `).join('');
+                            })()}
+                        </div>
+                    </div>
+                    <!-- END OF RELATED POSTS SECTION -->
+                </div>
             `;
-            
             // Hide the home page and show the post detail
             document.getElementById('homePage').classList.remove('active');
             document.getElementById('homePage').classList.add('hidden');
-            
             // Create a new element for the post detail
             const postDetailElement = document.createElement('div');
             postDetailElement.innerHTML = postDetailHTML;
             postDetailElement.style.display = 'block';
-            
             // Add it to the main content
             document.querySelector('main.container').appendChild(postDetailElement);
-            
             // Add event listener for the back button
             document.getElementById('backBtn').addEventListener('click', () => {
                 // Remove the post detail
                 document.getElementById('dynamicPostDetail').remove();
-                
                 // Show the home page
                 document.getElementById('homePage').classList.remove('hidden');
                 document.getElementById('homePage').classList.add('active');
-                
                 // Update the URL
                 window.history.pushState({ page: 'home' }, 'Bandar Urban Farm', window.location.pathname);
             });
+
+            // Add click event listeners to related post cards
+            document.querySelectorAll('.related-post-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    // Get the post ID from the data attribute
+                    const postId = card.getAttribute('data-post-id');
+                    const relatedPost = blogPosts.find(p => p.id === postId);
+                    if (relatedPost) {
+                        // Remove current post detail
+                        document.getElementById('dynamicPostDetail').remove();
+                        // Show the new post detail
+                        showPostDetail(relatedPost);
+                        // Update URL
+                        const titleSlug = relatedPost.title
+                            .toLowerCase()
+                            .replace(/[^a-z0-9]+/g, '-')
+                            .replace(/(^-|-$)/g, '');
+                        const postUrl = `post-${titleSlug}`;
+                        window.history.pushState({ post: titleSlug }, relatedPost.title, postUrl);
+                    }
+                });
+            });
         }
-        
         // Render posts
         function renderPosts() {
             console.log('Rendering posts, current page:', currentPage);
@@ -1281,7 +1408,6 @@
             // Render pagination
             renderPagination();
         }
-        
         // Render pagination
         function renderPagination() {
             paginationElement.innerHTML = '';
@@ -1330,7 +1456,6 @@
             });
             paginationElement.appendChild(nextBtn);
         }
-        
         // Filter posts
         function filterPosts() {
             searchTerm = searchInput.value.toLowerCase();
@@ -1345,7 +1470,6 @@
             // Show appropriate view
             renderPosts();
         }
-        
         // Check URL for post on load
         function checkUrlForPost() {
             const hash = window.location.hash;
@@ -1368,21 +1492,18 @@
             document.getElementById('homePage').classList.remove('hidden');
             document.getElementById('homePage').classList.add('active');
         }
-        
         // Toggle navigation menu
         function toggleMenu() {
             navMenu.classList.toggle('active');
             overlay.classList.toggle('active');
             document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
         }
-        
         // Close menu
         function closeAll() {
             navMenu.classList.remove('active');
             overlay.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
-        
         // Initialize
         function init() {
             console.log('Initializing Bandar Urban Farm blog...');
@@ -1412,20 +1533,17 @@
                 // Update URL
                 window.history.pushState({ page: 'home' }, 'Bandar Urban Farm', window.location.pathname);
             });
-            
             // Check URL for post on load
             setTimeout(() => {
                 checkUrlForPost();
             }, 100);
         }
-        
         // Start the application when DOM is loaded
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', init);
         } else {
             init();
         }
-        
         // Add mobile-specific styling for header
         const mobileStyle = document.createElement('style');
         mobileStyle.textContent = `
@@ -1439,7 +1557,6 @@
             }
         `;
         document.head.appendChild(mobileStyle);
-        
         // Update logo text for mobile devices
         function updateLogoForMobile() {
             const logoH1 = document.querySelector('.logo h1');
@@ -1449,7 +1566,6 @@
                 logoH1.textContent = "Bandar Urban Farm";
             }
         }
-        
         // Call on load and resize
         window.addEventListener('load', updateLogoForMobile);
         window.addEventListener('resize', updateLogoForMobile);

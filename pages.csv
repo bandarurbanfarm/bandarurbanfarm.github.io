@@ -1,0 +1,4 @@
+id,title,slug,menu_title,content
+about,Tentang Bandar Urban Farm,about,Tentang,"<h3>Tentang Kami</h3><p>Isi konten tentang halaman...</p>"
+contact,Hubungi Kami,contact,Kontak,"<h3>Kontak</h3><p>Informasi kontak...</p>"
+author,Tentang Penulis,author,Penulis,"<h3>Penulis</h3><p>Informasi tentang penulis...</p>"
